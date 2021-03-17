@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { Scrollbars } from "react-custom-scrollbars";
 import { ReactComponent as LogoSvg } from "../../images/CatwikiLogo.svg";
 import { ReactComponent as SearchSvg } from "../../images/search-black-18dp.svg";
 import hero from "../../images/HeroImagelg.png";
@@ -20,7 +21,7 @@ const Logo = styled(LogoSvg)`
 `;
 
 const Hero = styled.div`
-  margin-top: 20px;
+  margin-top: 30px;
   border-radius: 42px 42px 0px 0px;
   color: white;
   position: relative;
@@ -34,7 +35,7 @@ const HeroWrapper = styled.div`
   display: flex;
   flex-direction: column;
   width: 395px;
-  padding: 108px;
+  padding: 108px 0 0 108px;
 `;
 
 const HeroBackground = styled.img`
@@ -61,7 +62,7 @@ const Subtitle = styled.p`
 
 const SearchWrapper = styled.div`
   background: white;
-  margin-top: 52px;
+  margin-top: 30px;
   height: 69.67px;
   border-radius: 59px;
   display: flex;
@@ -85,7 +86,47 @@ const SearchBox = styled.input`
     opacity: 1;
   }
 `;
-const SearchIcon = styled(SearchSvg)``;
+
+const Prompt = styled(Scrollbars)`
+  margin-top: 20px;
+  height: 219.72px !important;
+  ${"" /* overflow: auto; */}
+  border: 1px solid black;
+  background: #ffffff;
+  border-radius: 24px;
+  font-family: Montserrat;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 22px;
+  color: #000000;
+
+  &::-webkit-scrollbar {
+    width: 50px;
+  }
+
+  & ul {
+    padding: 0 15px;
+  }
+
+  & li {
+    list-style-type: none;
+    height: 56.16px;
+    word-wrap: anywhere;
+    padding-left: 10px;
+    margin-right: 15px;
+    display: flex;
+    align-items: center;
+  }
+  & li:hover {
+    background: rgba(151, 151, 151, 0.1);
+    border-radius: 12px;
+  }
+
+  & div:last-child {
+    margin: 0 15px 0 0;
+  }
+`;
 
 function App() {
   return (
@@ -98,8 +139,20 @@ function App() {
           <Subtitle>Get to know more about your cat breed</Subtitle>
           <SearchWrapper>
             <SearchBox type="text" placeholder="Enter your breed" />
-            <SearchIcon />
+            <SearchSvg />
           </SearchWrapper>
+          <Prompt>
+            <ul>
+              <li>American Bobtail</li>
+              <li>xd</li>
+              <li>American Shorthair</li>
+              <li>American Wirehair</li>
+              <li>xd</li>
+              <li>xd</li>
+              <li>xd</li>
+              <li>xd</li>
+            </ul>
+          </Prompt>
         </HeroWrapper>
       </Hero>
       <div>Most Searched Breeds</div>
