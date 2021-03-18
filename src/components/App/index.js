@@ -3,6 +3,7 @@ import { ReactComponent as LogoSvg } from "../../images/CatwikiLogo.svg";
 
 import Hero from "../Hero";
 import Breeds from "../Breeds";
+import Article from "../Article";
 
 const Wrapper = styled.div`
   display: flex;
@@ -26,8 +27,7 @@ function App() {
       <Logo />
       <Hero />
       <Breeds />
-      <div>Most Searched Breeds</div>
-      <div>Why should you have a cat?</div>
+      <Article />
       <footer>CatWiki</footer>
     </Wrapper>
   );

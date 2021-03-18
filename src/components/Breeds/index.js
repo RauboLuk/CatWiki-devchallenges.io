@@ -38,8 +38,6 @@ const Title = styled.p`
     display: block;
     width: 59.18px;
     height: 3.21px;
-    left: 204px;
-    top: 707.19px;
 
     background: #4d270c;
     border-radius: 77px;
