@@ -4,6 +4,7 @@ import { ReactComponent as LogoSvg } from "../../images/CatwikiLogo.svg";
 import Hero from "../Hero";
 import Breeds from "../Breeds";
 import Article from "../Article";
+import Footer from "../Footer";
 
 const Wrapper = styled.div`
   display: flex;
@@ -28,7 +29,7 @@ function App() {
       <Hero />
       <Breeds />
       <Article />
-      <footer>CatWiki</footer>
+      <Footer />
     </Wrapper>
   );
 }
