@@ -20,16 +20,16 @@ const Wrapper = styled.div`
   & * {
     margin: 0;
     color: #291507;
+    font-family: Montserrat;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 22px;
   }
 `;
 
 const Title = styled.p`
   grid-area: title;
-  font-family: Montserrat;
-  font-size: 18px;
-  font-style: normal;
-  font-weight: 500;
-  line-height: 22px;
   letter-spacing: 0em;
   text-align: left;
 
@@ -47,8 +47,6 @@ const Title = styled.p`
 
 const BigText = styled.p`
   grid-area: bigText;
-  font-family: Montserrat;
-  font-style: normal;
   font-weight: bold;
   font-size: 48px;
   line-height: 59px;
@@ -56,16 +54,12 @@ const BigText = styled.p`
 
 const MoreWrapper = styled.div`
   grid-area: more;
-  font-family: Montserrat;
-  font-style: normal;
-  font-weight: bold;
-  font-size: 18px;
-  line-height: 22px;
   align-self: end;
   justify-self: end;
 `;
 
 const More = styled.div`
+  font-weight: bold;
   color: rgba(41, 21, 7, 0.6);
   display: flex;
 `;
@@ -108,11 +102,7 @@ const Img = styled.img`
 `;
 
 const Desc = styled.p`
-  font-family: Montserrat;
-  font-size: 18px;
-  font-style: normal;
   font-weight: 600;
-  line-height: 22px;
   letter-spacing: 0em;
   text-align: left;
   word-wrap: anywhere;

@@ -10,6 +10,12 @@ const HeroWrapper = styled.div`
   color: white;
   position: relative;
   width: 100%;
+
+  & * {
+    font-family: Montserrat;
+    font-style: normal;
+    font-weight: 500;
+  }
 `;
 
 const HeroContent = styled.div`
@@ -25,7 +31,6 @@ const HeroContent = styled.div`
 const HeroBackground = styled.img`
   background: #c4c4c4;
   width: 100%;
-  ${"" /* max-height: 100%; */}
   border-radius: 42px 42px 0px 0px;
 `;
 
@@ -37,9 +42,6 @@ const HeroLogo = styled(LogoSvg)`
 `;
 
 const Subtitle = styled.p`
-  font-family: Montserrat;
-  font-style: normal;
-  font-weight: 500;
   font-size: 24px;
   line-height: 29px;
 `;
@@ -56,9 +58,6 @@ const SearchWrapper = styled.div`
 const SearchBox = styled.input`
   padding-left: 28px;
   width: 80%;
-  font-family: Montserrat;
-  font-style: normal;
-  font-weight: 500;
   font-size: 18px;
   line-height: 22px;
   outline: none;
@@ -77,9 +76,6 @@ const Prompt = styled(Scrollbars)`
   border: 1px solid black;
   background: #ffffff;
   border-radius: 24px;
-  font-family: Montserrat;
-  font-style: normal;
-  font-weight: 500;
   font-size: 18px;
   line-height: 22px;
   color: #000000;

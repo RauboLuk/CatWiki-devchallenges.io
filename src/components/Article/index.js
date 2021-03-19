@@ -6,7 +6,6 @@ import image_3 from "../../images/image_3.png";
 
 const Wrapper = styled.div`
   padding: 108px;
-
   display: flex;
   grid-template-columns: 1fr 1fr;
   grid-template-rows: auto;
@@ -15,6 +14,10 @@ const Wrapper = styled.div`
   & * {
     margin: 0;
     color: #291507;
+    font-family: Montserrat;
+    font-style: normal;
+    font-size: 18px;
+    line-height: 22px;
   }
 `;
 
@@ -24,8 +27,6 @@ const TextSection = styled.div`
 `;
 
 const BigText = styled.p`
-  font-family: Montserrat;
-  font-style: normal;
   font-weight: bold;
   font-size: 48px;
   line-height: 59px;
@@ -46,21 +47,13 @@ const Snippet = styled.p`
   padding-top: 40px;
   padding-bottom: 45px;
   width: 85%;
-  font-family: Montserrat;
-  font-size: 18px;
-  font-style: normal;
   font-weight: 500;
-  line-height: 22px;
   letter-spacing: 0em;
   text-align: left;
 `;
 
 const More = styled.div`
-  font-family: Montserrat;
-  font-style: normal;
   font-weight: bold;
-  font-size: 18px;
-  line-height: 22px;
   display: flex;
   align-items: center;
   justify-content: start;
@@ -69,7 +62,7 @@ const More = styled.div`
 `;
 
 const Arrow = styled(ArrowSvg)`
-padding-left: 14px;
+  padding-left: 14px;
   fill: #7f736a;
 `;
 
@@ -92,6 +85,7 @@ const ImgWrapper = styled.div`
 
   & img:nth-child(1) {
     order: 2;
+    align-self: flex-end;
     max-width: 80%;
   }
   & img:nth-child(2) {
