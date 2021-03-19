@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { ReactComponent as ArrowSvg } from "../../images/arrow_right_alt-black-24dp.svg";
 
 const Wrapper = styled.div`
   margin-top: -40px;
@@ -53,18 +54,26 @@ const BigText = styled.p`
   line-height: 59px;
 `;
 
-const More = styled.p`
+const MoreWrapper = styled.div`
   grid-area: more;
   font-family: Montserrat;
   font-style: normal;
   font-weight: bold;
   font-size: 18px;
   line-height: 22px;
-
-  text-align: right;
   align-self: end;
+  justify-self: end;
+`;
 
+const More = styled.div`
   color: rgba(41, 21, 7, 0.6);
+  display: flex;
+`;
+
+const Arrow = styled(ArrowSvg)`
+  padding-left: 14px;
+  margin-top: -2px;
+  fill: #7f736a;
 `;
 
 const ImagesSection = styled.div`
@@ -114,7 +123,11 @@ const Breeds = () => {
     <Wrapper>
       <Title>Most Searched Breeds</Title>
       <BigText>66+ Breeds For you to discover</BigText>
-      <More>SEE MORE</More>
+      <MoreWrapper>
+        <More>
+          SEE MORE <Arrow />
+        </More>
+      </MoreWrapper>
       <ImagesSection>
         <Item>
           <ImgWrapper>

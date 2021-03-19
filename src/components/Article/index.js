@@ -24,7 +24,6 @@ const TextSection = styled.div`
 `;
 
 const BigText = styled.p`
-  grid-area: bigText;
   font-family: Montserrat;
   font-style: normal;
   font-weight: bold;
@@ -56,8 +55,7 @@ const Snippet = styled.p`
   text-align: left;
 `;
 
-const More = styled.p`
-  grid-area: more;
+const More = styled.div`
   font-family: Montserrat;
   font-style: normal;
   font-weight: bold;

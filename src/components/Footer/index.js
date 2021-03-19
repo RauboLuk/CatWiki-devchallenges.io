@@ -52,8 +52,8 @@ const Footer = () => {
       <CreditsWrapper>
         <Copyright />
         <Credits>
-          created by <CreditsUsername>username</CreditsUsername> -
-          devChallenge.io 2021
+          created by <CreditsUsername>Łukasz Raubo</CreditsUsername> -
+          devChallenges.io 2021
         </Credits>
       </CreditsWrapper>
     </Wrapper>
