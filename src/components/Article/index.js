@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { ReactComponent as ArrowSvg } from "../../images/arrow_right_alt-black-24dp.svg";
 import image_1 from "../../images/image_1.png";
 import image_2 from "../../images/image_2.png";
 import image_3 from "../../images/image_3.png";
@@ -18,7 +19,8 @@ const Wrapper = styled.div`
 `;
 
 const TextSection = styled.div`
-  width: 100%;
+  width: 90%;
+  padding-top: 80px;
 `;
 
 const BigText = styled.p`
@@ -42,6 +44,9 @@ const BigText = styled.p`
 `;
 
 const Snippet = styled.p`
+  padding-top: 40px;
+  padding-bottom: 45px;
+  width: 85%;
   font-family: Montserrat;
   font-size: 18px;
   font-style: normal;
@@ -58,21 +63,27 @@ const More = styled.p`
   font-weight: bold;
   font-size: 18px;
   line-height: 22px;
-
-  text-align: right;
-  align-self: end;
+  display: flex;
+  align-items: center;
+  justify-content: start;
 
   color: rgba(41, 21, 7, 0.6);
+`;
+
+const Arrow = styled(ArrowSvg)`
+padding-left: 14px;
+  fill: #7f736a;
 `;
 
 const ImgSection = styled.div`
   width: 100%;
   display: grid;
-  grid-template-columns: 50% 50%;
+  grid-template-columns: 1fr 1fr;
   grid-template-rows: auto;
   justify-items: end;
   gap: 27px;
 `;
+
 const ImgWrapper = styled.div`
   width: 100%;
   height: 100%;
@@ -106,7 +117,9 @@ const Article = () => {
           Having a cat around you can actually trigger the release of calming
           chemicals in your body which lower your stress and anxiety leves
         </Snippet>
-        <More>READ MORE</More>
+        <More>
+          READ MORE <Arrow />
+        </More>
       </TextSection>
       <ImgSection>
         <ImgWrapper>
