@@ -68,24 +68,27 @@ const More = styled.p`
 const ImgSection = styled.div`
   width: 100%;
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 50% 50%;
   grid-template-rows: auto;
-  grid-template-areas:
-    "img2 img3"
-    "img1 img3";
-    justify-items: end;
+  justify-items: end;
+  gap: 27px;
+`;
+const ImgWrapper = styled.div`
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: end;
   gap: 27px;
 
   & img:nth-child(1) {
-    grid-area: img1;
-    width: 80%
+    order: 2;
+    max-width: 80%;
   }
   & img:nth-child(2) {
-    grid-area: img2;
+    order: 1;
   }
-  & img:nth-child(3) {
-    grid-area: img3;
-  }
+}
 `;
 
 const Img = styled.img`
@@ -106,8 +109,10 @@ const Article = () => {
         <More>READ MORE</More>
       </TextSection>
       <ImgSection>
-        <Img src={image_1} />
-        <Img src={image_2} />
+        <ImgWrapper>
+          <Img src={image_1} />
+          <Img src={image_2} />
+        </ImgWrapper>
         <Img src={image_3} />
       </ImgSection>
     </Wrapper>
