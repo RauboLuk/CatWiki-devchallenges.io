@@ -1,8 +1,8 @@
 import styled from "styled-components";
-import { ReactComponent as ArrowSvg } from "../../images/arrow_right_alt-black-24dp.svg";
-import image_1 from "../../images/image_1.png";
-import image_2 from "../../images/image_2.png";
-import image_3 from "../../images/image_3.png";
+import { ReactComponent as ArrowSvg } from "../../../../assets/arrow_right_alt-black-24dp.svg";
+import image_1 from "../../../../assets/image_1.png";
+import image_2 from "../../../../assets/image_2.png";
+import image_3 from "../../../../assets/image_3.png";
 
 const Wrapper = styled.div`
   padding: 108px;

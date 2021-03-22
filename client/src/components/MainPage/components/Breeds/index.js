@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { ReactComponent as ArrowSvg } from "../../images/arrow_right_alt-black-24dp.svg";
+import { ReactComponent as ArrowSvg } from "../../../../assets/arrow_right_alt-black-24dp.svg";
 
 const Wrapper = styled.div`
   margin-top: -40px;

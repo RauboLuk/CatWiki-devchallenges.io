@@ -1,11 +1,10 @@
 import styled from "styled-components";
 import { Scrollbars } from "react-custom-scrollbars";
-import { ReactComponent as SearchSvg } from "../../images/search-black-18dp.svg";
-import { ReactComponent as LogoSvg } from "../../images/CatwikiLogo.svg";
-import hero from "../../images/HeroImagelg.png";
+import { ReactComponent as SearchSvg } from "../../../../assets/search-black-18dp.svg";
+import { ReactComponent as LogoSvg } from "../../../../assets/CatwikiLogo.svg";
+import hero from "../../../../assets/HeroImagelg.png";
 
 const HeroWrapper = styled.div`
-  margin-top: 30px;
   border-radius: 42px 42px 0px 0px;
   color: white;
   position: relative;

@@ -85,3 +85,6 @@ https://generatepress.com/forums/topic/how-can-i-draw-a-partial-line-under-text/
 
 api gateway
 https://hackernoon.com/creating-simple-api-gateway-using-node-js-6d5933c214b8
+
+file structure 
+https://www.pluralsight.com/guides/file-structure-react-applications-created-create-react-app
