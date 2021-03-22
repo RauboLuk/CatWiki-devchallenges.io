@@ -2,17 +2,30 @@ import styled from "styled-components";
 
 const Wrapper = styled.div`
   display: flex;
-  padding: 0 3vw;
+  padding: 0 4vw;
 `;
+
 const DataWrapper = styled.div`
   display: flex;
   flex-direction: column;
+  width: 50%;
 `;
 
-const Photos = () => {
+const ImgWrapper = styled.div`
+  width: 50%;
+`;
+
+const Img = styled.img`
+  padding: 50px;
+  max-width: 100%;
+`;
+
+const Details = () => {
   return (
     <Wrapper>
-      <img src="https://via.placeholder.com/400" alt="cat breed"/>
+      <ImgWrapper>
+        <Img src="https://via.placeholder.com/400" alt="cat breed" />
+      </ImgWrapper>
       <DataWrapper>
         <h1>Title</h1>
         <p>
@@ -34,4 +47,4 @@ const Photos = () => {
   );
 };
 
-export default Photos;
+export default Details;
