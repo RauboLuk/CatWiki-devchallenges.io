@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import { ReactComponent as LogoSvg } from "../../images/CatwikiLogo.svg";
 
+import BreedDetails from "../BreedDetails";
 import Hero from "../Hero";
 import Breeds from "../Breeds";
 import Article from "../Article";
@@ -18,6 +19,13 @@ const Logo = styled(LogoSvg)`
 `;
 
 function App() {
+  return (
+    <Wrapper className="App">
+      <Logo />
+      <BreedDetails />
+      <Footer />
+    </Wrapper>
+  );
   return (
     <Wrapper className="App">
       <Logo />
