@@ -2,9 +2,10 @@ import { useState } from "react";
 import styled from "styled-components";
 import { ReactComponent as LogoSvg } from "../../assets/CatwikiLogo.svg";
 
-import BreedDetails from "../BreedDetails";
-import Footer from "../Footer";
 import MainPage from "../MainPage";
+import BreedDetails from "../BreedDetails";
+import MostSearchedBreeds from "../MostSearchedBreeds";
+import Footer from "../Footer";
 
 const Wrapper = styled.div`
   padding: 26px 96px;
@@ -19,20 +20,28 @@ const Logo = styled(LogoSvg)`
 `;
 
 function App() {
-  let [x, setX] = useState(true);
+  let [x, setX] = useState(false);
   if (x)
     return (
       <Wrapper className="App">
-        <button onClick={() => setX(!x)} />
         <Logo />
+        <button onClick={() => setX(!x)} />
         <BreedDetails />
         <Footer />
       </Wrapper>
     );
   return (
     <Wrapper className="App">
-      <button onClick={() => setX(!x)} />
       <Logo />
+      <button onClick={() => setX(!x)} />
+      <MostSearchedBreeds />
+      <Footer />
+    </Wrapper>
+  );
+  return (
+    <Wrapper className="App">
+      <Logo />
+      <button onClick={() => setX(!x)} />
       <MainPage />
       <Footer />
     </Wrapper>
