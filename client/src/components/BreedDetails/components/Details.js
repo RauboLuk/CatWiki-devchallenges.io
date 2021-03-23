@@ -1,22 +1,37 @@
 import styled from "styled-components";
 
 const Wrapper = styled.div`
-  display: flex;
+  display: grid;
+  grid-template-columns: repeat(2, 50%);
   padding: 0 4vw;
 `;
 
 const DataWrapper = styled.div`
   display: flex;
   flex-direction: column;
-  width: 50%;
 `;
 
 const ImgWrapper = styled.div`
-  width: 50%;
+  position: relative;
+  padding: 0 3vw;
+  min-height: 400px;
+`;
+
+const Rectangle82 = styled.div`
+  content: "";
+  display: block;
+  position: absolute;
+  top: 40px;
+  left: 2vw;
+  width: 83.64px;
+  height: 305.12px;
+  background: #dec68b;
+  border-radius: 14px;
+  z-index: -1;
 `;
 
 const Img = styled.img`
-  padding: 50px;
+  border-radius: 24px;
   max-width: 100%;
 `;
 
@@ -24,7 +39,8 @@ const Details = () => {
   return (
     <Wrapper>
       <ImgWrapper>
-        <Img src="https://via.placeholder.com/400" alt="cat breed" />
+        <Rectangle82 />
+        <Img src="https://via.placeholder.com/380x380" alt="cat breed" />
       </ImgWrapper>
       <DataWrapper>
         <h1>Title</h1>
