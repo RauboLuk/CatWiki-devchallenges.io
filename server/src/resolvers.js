@@ -1,7 +1,10 @@
 module.exports = {
   Query: {
-    searchBreed: async (_, { str }, { dataSources }) => {
-      return dataSources.catAPI.searchBreed(str);
+    searchForBreed: async (_, { str }, { dataSources }) => {
+      return dataSources.catAPI.searchForBreed(str);
     },
+    getImageUrl: async (_, { id }, { dataSources }) => {
+      return dataSources.catAPI.getImageUrl(id);
+    }
   }
 }

@@ -7,9 +7,17 @@ const typeDefs = gql`
     name: String!
   }
 
+  type ImageUrl {
+    id: ID!
+    "Url to image"
+    url: String!
+  }
+
   type Query {
-    "Search breeds, return array"
-    searchBreed(str: String!): [Breed!]!
+    "Search for breed, return array"
+    searchForBreed(str: String!): [Breed!]!
+    "Returns object with image url"
+    getImageUrl(id: String!): ImageUrl!
   }
 `;
 
