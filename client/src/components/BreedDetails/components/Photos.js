@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 const Wrapper = styled.div`
-margin: 8vh 0 15vh 0;
+  margin: 8vh 0 15vh 0;
 `;
 
 const Desc = styled.p`
@@ -26,8 +26,10 @@ const ImgsWrapper = styled.div`
 `;
 
 const Img = styled.img`
-  max-width: 100%;
-  max-height: 100%;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 24px;
 `;
 
 const Photos = ({ images }) => {
@@ -35,8 +37,8 @@ const Photos = ({ images }) => {
     <Wrapper>
       <Desc>Other photos</Desc>
       <ImgsWrapper>
-        {images.map(img => (
-          <Img src={img.url} alt="" key={img.id}/>
+        {images.map((img) => (
+          <Img src={img.url} alt="" key={img.id} />
         ))}
       </ImgsWrapper>
     </Wrapper>
