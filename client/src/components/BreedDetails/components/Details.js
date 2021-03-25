@@ -91,10 +91,18 @@ const ScoreLine = styled.div`
   margin: auto;
   border-radius: 8px;
 
-  background: ${props => props.true ? '#544439' : '#E0E0E0'};
+  background: ${(props) => (props.true ? "#544439" : "#E0E0E0")};
 `;
 
-const Details = () => {
+const Details = ({ breed }) => {
+  const generateScore = (num) => {
+    const arr = [];
+    for (let i = 0; i < 5; i++) {
+      if (num > i) arr.push(<ScoreLine true key={i} />);
+      else arr.push(<ScoreLine key={i} />);
+    }
+    return arr;
+  };
   return (
     <Wrapper>
       <ImgWrapper>
@@ -102,43 +110,44 @@ const Details = () => {
         <Img src="https://via.placeholder.com/380x380" alt="cat breed" />
       </ImgWrapper>
       <DataWrapper>
-        <Title>Title</Title>
-        <Desc>
-          Bengals are a lot of fun to live with, but they're definitely not the
-          cat for everyone, or for first-time cat owners. Extremely intelligent,
-          curious and active, they demand a lot of interaction and woe betide
-          the owner who doesn't provide it.
-        </Desc>
+        <Title>{breed.name}</Title>
+        <Desc>{breed.description}</Desc>
         <Info>
           <Bulet>
-            <Bold>Temperament:</Bold> Alert, Agile, Energetic, Demanding,
-            Intelligent
+            <Bold>Temperament: </Bold>
+            {breed.temperament}
           </Bulet>
           <Bulet>
-            <Bold>Origin:</Bold> United States
+            <Bold>Origin: </Bold>
+            {breed.origin}
           </Bulet>
           <Bulet>
-            <Bold>Life Span:</Bold> 12 - 15 years
+            <Bold>Life Span:</Bold> {breed.life_span} years
           </Bulet>
           <TableRow>
-            <Bold>Adaptability:</Bold> <ScoreLine true/>
-            <ScoreLine true/> <ScoreLine />
-            <ScoreLine /> <ScoreLine />
+            <Bold>Adaptability:</Bold> {generateScore(breed.adaptability)}
           </TableRow>
           <TableRow>
-            <Bold>Affection level:</Bold> <ScoreLine />
-            <ScoreLine /> <ScoreLine />
-            <ScoreLine /> <ScoreLine />
+            <Bold>Affection level:</Bold> {generateScore(breed.affection_level)}
           </TableRow>
           <TableRow>
-            <Bold>Child Friendly:</Bold> <ScoreLine />
-            <ScoreLine /> <ScoreLine />
-            <ScoreLine /> <ScoreLine />
+            <Bold>Child Friendly:</Bold> {generateScore(breed.child_friendly)}
           </TableRow>
           <TableRow>
-            <Bold>bulet:</Bold> <ScoreLine />
-            <ScoreLine /> <ScoreLine />
-            <ScoreLine /> <ScoreLine />
+            <Bold>Grooming:</Bold> {generateScore(breed.grooming)}
+          </TableRow>
+          <TableRow>
+            <Bold>Intelligence:</Bold> {generateScore(breed.intelligence)}
+          </TableRow>
+          <TableRow>
+            <Bold>Health issues:</Bold> {generateScore(breed.health_issues)}
+          </TableRow>
+          <TableRow>
+            <Bold>Social needs:</Bold> {generateScore(breed.social_needs)}
+          </TableRow>
+          <TableRow>
+            <Bold>Stranger friendly:</Bold>
+            {generateScore(breed.stranger_friendly)}
           </TableRow>
         </Info>
       </DataWrapper>

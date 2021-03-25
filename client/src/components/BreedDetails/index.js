@@ -14,11 +14,11 @@ const BreedDetails = ({ id }) => {
   if (loading) return <p>loading...</p>;
   if (error) return <p>error {error.message}</p>;
 
-  console.log(data);
+  console.log(data.getBreedWithImgUrls);
   return (
     <Wrapper>
-      <Details />
-      <Photos />
+      <Details breed={data.getBreedWithImgUrls.breed}/>
+      <Photos images={data.getBreedWithImgUrls.imagesUrls}/>
     </Wrapper>
   );
 };

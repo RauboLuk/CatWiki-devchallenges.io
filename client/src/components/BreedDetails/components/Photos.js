@@ -30,17 +30,14 @@ const Img = styled.img`
   max-height: 100%;
 `;
 
-const Photos = () => {
+const Photos = ({ images }) => {
   return (
     <Wrapper>
       <Desc>Other photos</Desc>
       <ImgsWrapper>
-        <Img src="https://via.placeholder.com/380x380" alt="" />
-        <Img src="https://via.placeholder.com/580x180" alt="" />
-        <Img src="https://via.placeholder.com/180x580" alt="" />
-        <Img src="https://via.placeholder.com/320x350" alt="" />
-        <Img src="https://via.placeholder.com/100" alt="" />
-        <Img src="https://via.placeholder.com/450x450" alt="" />
+        {images.map(img => (
+          <Img src={img.url} alt="" key={img.id}/>
+        ))}
       </ImgsWrapper>
     </Wrapper>
   );
