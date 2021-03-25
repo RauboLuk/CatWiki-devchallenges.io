@@ -34,7 +34,7 @@ function App() {
     <Wrapper className="App">
       <Logo />
       <button onClick={() => setX(!x)} />
-      <MostSearchedBreeds />
+      <MainPage />
       <Footer />
     </Wrapper>
   );
@@ -42,7 +42,7 @@ function App() {
     <Wrapper className="App">
       <Logo />
       <button onClick={() => setX(!x)} />
-      <MainPage />
+      <MostSearchedBreeds />
       <Footer />
     </Wrapper>
   );
