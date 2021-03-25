@@ -19,19 +19,16 @@ class CatAPI extends RESTDataSource {
       name: breed.name,
     };
   }
-  
+
   async getImageUrl(id) {
     const response = await this.get(`images/${id}`);
     return response?.url ? { url: response.url, id: response.id } : {};
   }
-  
-  async getBreed(name) {
-    const response = await this.get(`images/search?breed_id=${name}`);
-    return Array.isArray(response)
-      ? response.map((data) => this.searchForBreedReducer(data))
-      : [];
-  }
 
+  async getBreed(id) {
+    const response = await this.get(`images/search?breed_id=${id}`);
+    return response[0]?.breeds[0] ? this.breedReduced(response[0]) : {};
+  }
 
   breedReduced(data) {
     const breed = data.breeds[0];
@@ -52,6 +49,23 @@ class CatAPI extends RESTDataSource {
       stranger_friendly: breed.stranger_friendly,
       reference_image_id: breed.reference_image_id,
     };
+  }
+
+  breedWithImgUrlsReducer(data) {
+    const imagesUrls = data.map(({id, url}) => ({id, url}))
+    return {
+      breed: this.breedReduced(data[0]),
+      imagesUrls
+    }
+  }
+
+  async getBreedWithImgUrls(id , limit = 8) {
+    const response = await this.get(
+      `images/search?size=small&limit=${limit}&breed_id=${id}`
+    );
+    return Array.isArray(response)
+      ? this.breedWithImgUrlsReducer(response)
+      : {};
   }
 }
 
