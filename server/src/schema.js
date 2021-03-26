@@ -37,22 +37,23 @@ const typeDefs = gql`
     url: String!
   }
 
-  type BreedWithImgUrls {
+  type BreedWithImgUrlsResponse {
+    success: Boolean!
     "Breed information"
-    breed: Breed!
+    breed: Breed
     "Urls to images"
-    imagesUrls: [ImageUrl!]!
+    imagesUrls: [ImageUrl]
   }
 
   type Query {
     "Search for breed, return array"
     searchForBreed(str: String!): [BreedName!]!
     "Returns object with image url"
-    getImageUrl(id: String!): ImageUrl!
+    getImageUrl(id: String!): ImageUrl
     "Returns information about breed"
     getBreed(id: String!): Breed!
     "Returns breed information and images urls"
-    getBreedWithImgUrls(id: String! limit: Int): BreedWithImgUrls!
+    getBreedWithImgUrls(id: String! limit: Int): BreedWithImgUrlsResponse!
   }
 `;
 

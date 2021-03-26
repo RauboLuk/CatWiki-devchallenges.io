@@ -54,6 +54,7 @@ class CatAPI extends RESTDataSource {
   breedWithImgUrlsReducer(data) {
     const imagesUrls = data.map(({ id, url }) => ({ id, url }));
     return {
+      success: true,
       breed: this.breedReduced(data[0]),
       imagesUrls,
     };
@@ -63,9 +64,9 @@ class CatAPI extends RESTDataSource {
     const response = await this.get(
       `images/search?size=small&order=RANDOM&limit=${limit}&breed_id=${id}`
     );
-    return Array.isArray(response)
+    return Array.isArray(response) && response[0]?.breeds
       ? this.breedWithImgUrlsReducer(response)
-      : {};
+      : {success: false};
   }
 }
 
