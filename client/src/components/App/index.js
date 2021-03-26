@@ -20,7 +20,7 @@ const Logo = styled(LogoSvg)`
 `;
 
 function App() {
-  let [x, setX] = useState(true);
+  let [x, setX] = useState(false);
   if (x)
     return (
       <Wrapper className="App">

@@ -38,7 +38,9 @@ const typeDefs = gql`
   }
 
   type BreedWithImgUrls {
+    "Breed information"
     breed: Breed!
+    "Urls to images"
     imagesUrls: [ImageUrl!]!
   }
 
@@ -49,6 +51,7 @@ const typeDefs = gql`
     getImageUrl(id: String!): ImageUrl!
     "Returns information about breed"
     getBreed(id: String!): Breed!
+    "Returns breed information and images urls"
     getBreedWithImgUrls(id: String! limit: Int): BreedWithImgUrls!
   }
 `;

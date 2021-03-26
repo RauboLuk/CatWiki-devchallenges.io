@@ -10,15 +10,21 @@ const BreedDetails = ({ id }) => {
   const { loading, error, data } = useQuery(BREED_IMAGES, {
     variables: { catId: "beng" },
   });
+  const imageId = data?.getBreedWithImgUrls?.breed?.reference_image_id;
+  const { loading: imgLoading, data: imageData } = useQuery(MAIN_IMAGE, {
+    skip: !imageId,
+    variables: { imageId }
+  })
 
-  if (loading) return <p>loading...</p>;
+  if (loading || imgLoading) return <p>loading...</p>;
   if (error) return <p>error {error.message}</p>;
 
   console.log(data.getBreedWithImgUrls);
+  console.log('imageData', imageData?.getImageUrl);
   return (
     <Wrapper>
-      <Details breed={data.getBreedWithImgUrls.breed}/>
-      <Photos images={data.getBreedWithImgUrls.imagesUrls}/>
+      <Details breed={data.getBreedWithImgUrls.breed} img={imageData?.getImageUrl.url}/>
+      <Photos images={data.getBreedWithImgUrls.imagesUrls} />
     </Wrapper>
   );
 };
@@ -49,6 +55,15 @@ const BREED_IMAGES = gql`
         url
         id
       }
+    }
+  }
+`;
+
+const MAIN_IMAGE = gql`
+  query Query($imageId: String!) {
+    getImageUrl(id: $imageId) {
+      id
+      url
     }
   }
 `;

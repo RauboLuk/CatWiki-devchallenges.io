@@ -52,16 +52,16 @@ class CatAPI extends RESTDataSource {
   }
 
   breedWithImgUrlsReducer(data) {
-    const imagesUrls = data.map(({id, url}) => ({id, url}))
+    const imagesUrls = data.map(({ id, url }) => ({ id, url }));
     return {
       breed: this.breedReduced(data[0]),
-      imagesUrls
-    }
+      imagesUrls,
+    };
   }
 
-  async getBreedWithImgUrls(id , limit = 8) {
+  async getBreedWithImgUrls(id, limit = 8) {
     const response = await this.get(
-      `images/search?size=small&limit=${limit}&breed_id=${id}`
+      `images/search?size=small&order=RANDOM&limit=${limit}&breed_id=${id}`
     );
     return Array.isArray(response)
       ? this.breedWithImgUrlsReducer(response)

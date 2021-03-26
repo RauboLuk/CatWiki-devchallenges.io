@@ -22,7 +22,7 @@ const DataWrapper = styled.div`
 const ImgWrapper = styled.div`
   position: relative;
   padding: 0 1vw;
-  min-height: 400px;
+  max-height: 400px;
 `;
 
 const Rectangle82 = styled.div`
@@ -32,7 +32,8 @@ const Rectangle82 = styled.div`
   top: 40px;
   left: 0.5vw;
   width: 83.64px;
-  height: 305.12px;
+  max-height: 305.12px;
+  height: 15vw;
   background: #dec68b;
   border-radius: 14px;
   z-index: -1;
@@ -94,7 +95,7 @@ const ScoreLine = styled.div`
   background: ${(props) => (props.true ? "#544439" : "#E0E0E0")};
 `;
 
-const Details = ({ breed }) => {
+const Details = ({ breed, img }) => {
   const generateScore = (num) => {
     const arr = [];
     for (let i = 0; i < 5; i++) {
@@ -107,7 +108,7 @@ const Details = ({ breed }) => {
     <Wrapper>
       <ImgWrapper>
         <Rectangle82 />
-        <Img src="https://via.placeholder.com/380x380" alt="cat breed" />
+        {img ? <Img src={img} alt="cat breed" /> : null}
       </ImgWrapper>
       <DataWrapper>
         <Title>{breed.name}</Title>
@@ -146,7 +147,7 @@ const Details = ({ breed }) => {
             <Bold>Social needs:</Bold> {generateScore(breed.social_needs)}
           </TableRow>
           <TableRow>
-            <Bold>Stranger friendly:</Bold>
+            <Bold>Stranger friendly:</Bold>{" "}
             {generateScore(breed.stranger_friendly)}
           </TableRow>
         </Info>

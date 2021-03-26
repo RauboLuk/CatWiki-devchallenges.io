@@ -1,7 +1,12 @@
 import styled from "styled-components";
+import { useEffect, useState } from "react";
+import { useDebounce } from "use-debounce";
+import { gql, useLazyQuery } from "@apollo/client";
+
 import { Scrollbars } from "react-custom-scrollbars";
 import { ReactComponent as SearchSvg } from "../../../../assets/search-black-18dp.svg";
 import { ReactComponent as LogoSvg } from "../../../../assets/CatwikiLogo.svg";
+
 import hero from "../../../../assets/HeroImagelg.png";
 
 const HeroWrapper = styled.div`
@@ -24,7 +29,7 @@ const HeroContent = styled.div`
   display: flex;
   flex-direction: column;
   width: 395px;
-  padding: 108px 0 0 108px;
+  padding: min(5vw, 108px) 0 0 min(5vw, 108px);
 `;
 
 const HeroBackground = styled.img`
@@ -47,7 +52,7 @@ const Subtitle = styled.p`
 
 const SearchWrapper = styled.div`
   background: white;
-  margin-top: 30px;
+  margin-top: min(1vw, 30px);
   height: 69.67px;
   border-radius: 59px;
   display: flex;
@@ -109,31 +114,83 @@ const Prompt = styled(Scrollbars)`
 `;
 
 const Hero = () => {
+  const [isSearchFocused, setIsSearchFocused] = useState(true);
+  const [text, setText] = useState("");
+  const [searchDebounced] = useDebounce(text, 2000);
+
+  const [searchForBreed, { called, loading, data }] = useLazyQuery(GET_BREEDS, {
+    variables: {
+      name: searchDebounced,
+    },
+  });
+  useEffect(() => {
+    if (searchDebounced !== "") {
+      console.log("effect call");
+      searchForBreed();
+    }
+  }, [searchDebounced, searchForBreed]);
+
+  if (data) console.log(data);
+
+  const handleChange = (e) => {
+    setText(e.target.value);
+  };
+  console.log(called);
+
+  const handleSearchFocus = (e) => {
+    setIsSearchFocused(!isSearchFocused);
+  };
   return (
     <HeroWrapper>
       <HeroBackground src={hero} />
       <HeroContent>
         <HeroLogo />
         <Subtitle>Get to know more about your cat breed</Subtitle>
+        <p>{searchDebounced}</p>
         <SearchWrapper>
-          <SearchBox type="text" placeholder="Enter your breed" />
+          <SearchBox
+            type="text"
+            placeholder="Enter your breed"
+            value={text}
+            onChange={handleChange}
+            onFocus={handleSearchFocus}
+            onBlur={handleSearchFocus}
+          />
           <SearchSvg />
         </SearchWrapper>
-        <Prompt hidden>
-          <ul>
-            <li>American Bobtail</li>
-            <li>xd</li>
-            <li>American Shorthair</li>
-            <li>American Wirehair</li>
-            <li>xd</li>
-            <li>xd</li>
-            <li>xd</li>
-            <li>xd</li>
-          </ul>
-        </Prompt>
+        <SearchResult
+          result={data}
+          loading={loading}
+          hidden={isSearchFocused || !called}
+        />
       </HeroContent>
     </HeroWrapper>
   );
 };
 
 export default Hero;
+
+const SearchResult = ({ result, loading, hidden }) => {
+  return (
+    <Prompt hidden={hidden}>
+      <ul>
+        {loading ? (
+          <li>...</li>
+        ) : result?.searchForBreed.length > 0 ? (
+          result?.searchForBreed.map((b) => <li key={b.id}>{b.name}</li>)
+        ) : (
+          <li>No results</li>
+        )}
+      </ul>
+    </Prompt>
+  );
+};
+
+const GET_BREEDS = gql`
+  query Query($name: String!) {
+    searchForBreed(str: $name) {
+      id
+      name
+    }
+  }
+`;
