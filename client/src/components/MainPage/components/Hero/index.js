@@ -130,12 +130,9 @@ const Hero = () => {
     }
   }, [searchDebounced, searchForBreed]);
 
-  if (data) console.log(data);
-
   const handleChange = (e) => {
     setText(e.target.value);
   };
-  console.log(called);
 
   const handleSearchFocus = (e) => {
     setIsSearchFocused(!isSearchFocused);
@@ -146,7 +143,6 @@ const Hero = () => {
       <HeroContent>
         <HeroLogo />
         <Subtitle>Get to know more about your cat breed</Subtitle>
-        <p>{searchDebounced}</p>
         <SearchWrapper>
           <SearchBox
             type="text"

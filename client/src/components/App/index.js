@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { Switch, Route } from "react-router-dom";
 import styled from "styled-components";
 import { ReactComponent as LogoSvg } from "../../assets/CatwikiLogo.svg";
 
@@ -20,29 +20,20 @@ const Logo = styled(LogoSvg)`
 `;
 
 function App() {
-  let [x, setX] = useState(false);
-  if (x)
-    return (
-      <Wrapper className="App">
-        <Logo />
-        <button onClick={() => setX(!x)} />
-        <BreedDetails />
-        <Footer />
-      </Wrapper>
-    );
   return (
     <Wrapper className="App">
       <Logo />
-      <button onClick={() => setX(!x)} />
-      <MainPage />
-      <Footer />
-    </Wrapper>
-  );
-  return (
-    <Wrapper className="App">
-      <Logo />
-      <button onClick={() => setX(!x)} />
-      <MostSearchedBreeds />
+      <Switch>
+        <Route path="/details/:id">
+          <BreedDetails />
+        </Route>
+        <Route path="/top">
+          <MostSearchedBreeds />
+        </Route>
+        <Route path="/">
+          <MainPage />
+        </Route>
+      </Switch>
       <Footer />
     </Wrapper>
   );
