@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { Link as LinkR } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { useDebounce } from "use-debounce";
 import { gql, useLazyQuery } from "@apollo/client";
@@ -113,10 +114,17 @@ const Prompt = styled(Scrollbars)`
   }
 `;
 
+const Link = styled(LinkR)`
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+`;
+
 const Hero = () => {
   const [isSearchFocused, setIsSearchFocused] = useState(true);
   const [text, setText] = useState("");
-  const [searchDebounced] = useDebounce(text, 2000);
+  const [searchDebounced] = useDebounce(text, 1000);
 
   const [searchForBreed, { called, loading, data }] = useLazyQuery(GET_BREEDS, {
     variables: {
@@ -125,7 +133,6 @@ const Hero = () => {
   });
   useEffect(() => {
     if (searchDebounced !== "") {
-      console.log("effect call");
       searchForBreed();
     }
   }, [searchDebounced, searchForBreed]);
@@ -135,7 +142,7 @@ const Hero = () => {
   };
 
   const handleSearchFocus = (e) => {
-    setIsSearchFocused(!isSearchFocused);
+    setTimeout(() => setIsSearchFocused(!isSearchFocused), 200);
   };
   return (
     <HeroWrapper>
@@ -173,7 +180,11 @@ const SearchResult = ({ result, loading, hidden }) => {
         {loading ? (
           <li>...</li>
         ) : result?.searchForBreed.length > 0 ? (
-          result?.searchForBreed.map((b) => <li key={b.id}>{b.name}</li>)
+          result?.searchForBreed.map((b) => (
+            <li key={b.id}>
+              <Link to={`/details/${b.id}`}>{b.name}</Link>
+            </li>
+          ))
         ) : (
           <li>No results</li>
         )}

@@ -1,4 +1,4 @@
-import { Switch, Route } from "react-router-dom";
+import { useHistory, Switch, Route } from "react-router-dom";
 import styled from "styled-components";
 import { ReactComponent as LogoSvg } from "../../assets/CatwikiLogo.svg";
 
@@ -20,9 +20,13 @@ const Logo = styled(LogoSvg)`
 `;
 
 function App() {
+  let history = useHistory();
+  const handleClick = () => {
+    history.push("/");
+  };
   return (
     <Wrapper className="App">
-      <Logo />
+      <Logo onClick={handleClick} />
       <Switch>
         <Route path="/details/:id">
           <BreedDetails />
