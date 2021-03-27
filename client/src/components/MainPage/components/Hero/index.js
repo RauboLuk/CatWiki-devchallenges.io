@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { Link as LinkR } from "react-router-dom";
 import { useEffect, useState } from "react";
-import { useDebounce } from "use-debounce";
+import { useDebounce, useDebouncedCallback } from "use-debounce";
 import { gql, useLazyQuery } from "@apollo/client";
 
 import { Scrollbars } from "react-custom-scrollbars";
@@ -29,7 +29,7 @@ const HeroContent = styled.div`
   left: 0;
   display: flex;
   flex-direction: column;
-  width: 395px;
+  width: min(45%, 395px);
   padding: min(5vw, 108px) 0 0 min(5vw, 108px);
 `;
 
@@ -42,19 +42,24 @@ const HeroBackground = styled.img`
 const HeroLogo = styled(LogoSvg)`
   filter: invert(100%) sepia(0%) saturate(0%) hue-rotate(293deg)
     brightness(106%) contrast(101%);
-  width: 287px;
+  width: min(287px, 20vw);
   height: auto;
 `;
 
 const Subtitle = styled.p`
-  font-size: 24px;
+  font-size: min(24px, 2.5vw);
   line-height: 29px;
+
+  @media (max-width: 1024px) {
+    font-size: 2.5vw;
+    line-height: 3vw;
+  }
 `;
 
 const SearchWrapper = styled.div`
   background: white;
   margin-top: min(1vw, 30px);
-  height: 69.67px;
+  height: min(69.67px, 7vw);
   border-radius: 59px;
   display: flex;
   align-items: center;
@@ -68,6 +73,12 @@ const SearchBox = styled.input`
   outline: none;
   border: none;
   background: none;
+
+  @media (max-width: 768px) {
+    padding-left: 13px;
+    font-size: 12px;
+    line-height: 15px;
+  }
 
   &::placeholder {
     color: black;
@@ -125,7 +136,9 @@ const Hero = () => {
   const [isSearchFocused, setIsSearchFocused] = useState(true);
   const [text, setText] = useState("");
   const [searchDebounced] = useDebounce(text, 1000);
+  const [placeholder, setPlaceholder] = useState("Enter your breed");
 
+  
   const [searchForBreed, { called, loading, data }] = useLazyQuery(GET_BREEDS, {
     variables: {
       name: searchDebounced,
@@ -136,6 +149,20 @@ const Hero = () => {
       searchForBreed();
     }
   }, [searchDebounced, searchForBreed]);
+  
+  useEffect(() => {
+    handleResize();
+    window.addEventListener("resize", debounced);
+  });
+  
+  const handleResize = () => {
+    if (window.innerWidth > 768 && placeholder !== "Enter your breed")
+    setPlaceholder("Enter your breed");
+    else if (window.innerWidth <= 768 && placeholder !== "Search")
+    setPlaceholder("Search");
+    console.log(window.innerWidth);
+  };
+  const debounced = useDebouncedCallback(handleResize, 100);
 
   const handleChange = (e) => {
     setText(e.target.value);
@@ -153,7 +180,7 @@ const Hero = () => {
         <SearchWrapper>
           <SearchBox
             type="text"
-            placeholder="Enter your breed"
+            placeholder={placeholder}
             value={text}
             onChange={handleChange}
             onFocus={handleSearchFocus}
