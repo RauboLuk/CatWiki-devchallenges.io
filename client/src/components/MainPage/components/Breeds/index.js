@@ -3,7 +3,7 @@ import { ReactComponent as ArrowSvg } from "../../../../assets/arrow_right_alt-b
 
 const Wrapper = styled.div`
   margin-top: -40px;
-  padding: 80px 108px 108px 108px;
+  padding: 80px min(5vw, 108px) min(5vw, 108px);
   border-radius: 0px 0px 42px 42px;
 
   background: #e3e1dc;
@@ -17,6 +17,13 @@ const Wrapper = styled.div`
     "images images";
   gap: 46px;
 
+  @media (max-width: 768px) {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+    ${"" /* padding: 15vw 7vw; */}
+  }
+
   & * {
     margin: 0;
     color: #291507;
@@ -25,6 +32,11 @@ const Wrapper = styled.div`
     font-style: normal;
     font-weight: 500;
     line-height: 22px;
+
+    @media (max-width: 768px) {
+      font-size: 12px;
+      line-height: 15px;
+    }
   }
 `;
 
@@ -37,7 +49,7 @@ const Title = styled.p`
     content: "";
     margin-top: 8px;
     display: block;
-    width: 59.18px;
+    width: min(59.18px, 10vw);
     height: 3.21px;
 
     background: #4d270c;
@@ -50,12 +62,22 @@ const BigText = styled.p`
   font-weight: bold;
   font-size: min(48px, 4vw);
   line-height: 59px;
+
+  @media (max-width: 768px) {
+    font-size: 18px;
+    line-height: 22px;
+    width: 70%;
+  }
 `;
 
 const MoreWrapper = styled.div`
   grid-area: more;
   align-self: end;
   justify-self: end;
+
+  @media (max-width: 768px) {
+    display: none;
+  }
 `;
 
 const More = styled.div`
@@ -76,12 +98,23 @@ const ImagesSection = styled.div`
   gap: 51px;
   grid-template-columns: repeat(4, 1fr);
   justify-content: center;
+
+  @media (max-width: 768px) {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+  }
 `;
 
 const Item = styled.div`
   display: flex;
   gap: 20px;
   flex-direction: column;
+
+  @media (max-width: 768px) {
+    gap: 12px;
+    width: 45%;
+  }
 `;
 
 const ImgWrapper = styled.div`
@@ -104,7 +137,7 @@ const Img = styled.img`
 const Desc = styled.p`
   font-weight: 600;
   letter-spacing: 0em;
-  text-align: left;
+  text-align: center;
   word-wrap: anywhere;
 `;
 

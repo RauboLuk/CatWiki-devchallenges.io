@@ -11,11 +11,23 @@ const Wrapper = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
+
+  @media (max-width: 768px) {
+    box-sizing: border-box;
+    padding: 20px 8vw;
+    flex-direction: column;
+    align-items: flex-start;
+    width: 100%;
+  }
 `;
 
 const Logo = styled(LogoSvg)`
   filter: invert(100%) sepia(100%) saturate(0%) hue-rotate(154deg)
     brightness(102%) contrast(103%);
+
+  @media (max-width: 768px) {
+    width: 15vw;
+  }
 `;
 
 const Credits = styled.p`
@@ -27,6 +39,11 @@ const Credits = styled.p`
   letter-spacing: 0em;
   text-align: left;
   color: #ffffff;
+
+  @media (max-width: 768px) {
+    font-size: max(12px, 2vw);
+    line-height: 15px;
+  }
 `;
 
 const CreditsUsername = styled.span`
@@ -40,6 +57,10 @@ const CreditsWrapper = styled.div`
   justify-content: center;
   align-items: center;
   gap: 15px;
+
+@media (max-width: 768px) {
+  gap: 8px;
+}
 `;
 const Copyright = styled(CSvg)`
   fill: white;

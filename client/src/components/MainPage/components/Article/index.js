@@ -5,11 +5,17 @@ import image_2 from "../../../../assets/image_2.png";
 import image_3 from "../../../../assets/image_3.png";
 
 const Wrapper = styled.div`
-  padding: 108px;
+  padding: min(5vw, 108px);
   display: flex;
   grid-template-columns: 1fr 1fr;
   grid-template-rows: auto;
   gap: 46px;
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+    padding: min(5vw, 108px) 0;
+    gap: 62px;
+  }
 
   & * {
     margin: 0;
@@ -24,12 +30,23 @@ const Wrapper = styled.div`
 const TextSection = styled.div`
   width: 90%;
   padding-top: min(80px, 5vw);
+
+  @media (max-width: 768px) {
+    width: 101%;
+  }
 `;
 
 const BigText = styled.p`
   font-weight: bold;
   font-size: min(48px, 4vw);
   line-height: min(59px, 4vw);
+
+  @media (max-width: 768px) {
+    font-size: 40px;
+    line-height: 49px;
+    letter-spacing: 0em;
+    text-align: left;
+  }
 
   &:before {
     content: "";
@@ -50,6 +67,11 @@ const Snippet = styled.p`
   font-weight: 500;
   letter-spacing: 0em;
   text-align: left;
+
+  @media (max-width: 768px) {
+    width: 95%;
+    padding-bottom: 26px;
+  }
 `;
 
 const More = styled.div`
@@ -59,6 +81,11 @@ const More = styled.div`
   justify-content: start;
 
   color: rgba(41, 21, 7, 0.6);
+
+  @media (max-width: 768px) {
+    font-size: 12px;
+    line-height: 15px;
+  }
 `;
 
 const Arrow = styled(ArrowSvg)`
@@ -73,6 +100,10 @@ const ImgSection = styled.div`
   grid-template-rows: auto;
   justify-items: end;
   gap: 27px;
+
+  @media (max-width: 768px) {
+    gap: 15px;
+  }
 `;
 
 const ImgWrapper = styled.div`
@@ -82,6 +113,10 @@ const ImgWrapper = styled.div`
   flex-direction: column;
   align-items: end;
   gap: 27px;
+  
+  @media (max-width: 768px) {
+    gap: 15px;
+  }
 
   & img:nth-child(1) {
     order: 2;
