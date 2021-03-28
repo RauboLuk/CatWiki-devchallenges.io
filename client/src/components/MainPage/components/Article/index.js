@@ -23,13 +23,13 @@ const Wrapper = styled.div`
 
 const TextSection = styled.div`
   width: 90%;
-  padding-top: 80px;
+  padding-top: min(80px, 5vw);
 `;
 
 const BigText = styled.p`
   font-weight: bold;
-  font-size: 48px;
-  line-height: 59px;
+  font-size: min(48px, 4vw);
+  line-height: min(59px, 4vw);
 
   &:before {
     content: "";

@@ -9,6 +9,7 @@ import { ReactComponent as SearchSvg } from "../../../../assets/search-black-18d
 import { ReactComponent as LogoSvg } from "../../../../assets/CatwikiLogo.svg";
 
 import hero from "../../../../assets/HeroImagelg.png";
+import Modal from "./Modal";
 
 const HeroWrapper = styled.div`
   border-radius: 42px 42px 0px 0px;
@@ -63,6 +64,10 @@ const SearchWrapper = styled.div`
   border-radius: 59px;
   display: flex;
   align-items: center;
+
+  @media (max-width: 768px) {
+    width: 70%;
+  }
 `;
 
 const SearchBox = styled.input`
@@ -78,6 +83,7 @@ const SearchBox = styled.input`
     padding-left: 13px;
     font-size: 12px;
     line-height: 15px;
+    width: 70%;
   }
 
   &::placeholder {
@@ -130,15 +136,17 @@ const Link = styled(LinkR)`
   height: 100%;
   display: flex;
   align-items: center;
+  color: inherit;
+  text-decoration: none;
 `;
 
 const Hero = () => {
   const [isSearchFocused, setIsSearchFocused] = useState(true);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [placeholder, setPlaceholder] = useState("Enter your breed");
   const [text, setText] = useState("");
   const [searchDebounced] = useDebounce(text, 1000);
-  const [placeholder, setPlaceholder] = useState("Enter your breed");
 
-  
   const [searchForBreed, { called, loading, data }] = useLazyQuery(GET_BREEDS, {
     variables: {
       name: searchDebounced,
@@ -149,27 +157,33 @@ const Hero = () => {
       searchForBreed();
     }
   }, [searchDebounced, searchForBreed]);
-  
+
   useEffect(() => {
     handleResize();
     window.addEventListener("resize", debounced);
-  });
-  
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
   const handleResize = () => {
-    if (window.innerWidth > 768 && placeholder !== "Enter your breed")
-    setPlaceholder("Enter your breed");
-    else if (window.innerWidth <= 768 && placeholder !== "Search")
-    setPlaceholder("Search");
-    console.log(window.innerWidth);
+    if (window.innerWidth > 768 && placeholder !== "Enter your breed") {
+      setPlaceholder("Enter your breed");
+      if (isModalOpen) setIsModalOpen(false);
+    } else if (window.innerWidth <= 768 && placeholder !== "Search") {
+      setPlaceholder("Search");
+    }
   };
   const debounced = useDebouncedCallback(handleResize, 100);
+
+  const openModal = () => {
+    if (window.innerWidth <= 768) setIsModalOpen(true);
+  };
 
   const handleChange = (e) => {
     setText(e.target.value);
   };
 
   const handleSearchFocus = (e) => {
-    setTimeout(() => setIsSearchFocused(!isSearchFocused), 200);
+    setTimeout(() => setIsSearchFocused(!isSearchFocused), 50);
   };
   return (
     <HeroWrapper>
@@ -182,41 +196,47 @@ const Hero = () => {
             type="text"
             placeholder={placeholder}
             value={text}
+            onClick={openModal}
             onChange={handleChange}
             onFocus={handleSearchFocus}
             onBlur={handleSearchFocus}
           />
           <SearchSvg />
         </SearchWrapper>
-        <SearchResult
-          result={data}
-          loading={loading}
-          hidden={isSearchFocused || !called}
-        />
+        <Prompt hidden={!isSearchFocused || !called || window.innerWidth <= 768}>
+          <SearchResult result={data} loading={loading} />
+        </Prompt>
       </HeroContent>
+      <Modal
+        isModalOpen={isModalOpen}
+        setIsModalOpen={setIsModalOpen}
+        placeholder={placeholder}
+        text={text}
+        handleChange={handleChange}
+        data={data}
+        loading={loading}
+      />
     </HeroWrapper>
   );
 };
 
 export default Hero;
 
-const SearchResult = ({ result, loading, hidden }) => {
+export const SearchResult = ({ result, loading }) => {
   return (
-    <Prompt hidden={hidden}>
-      <ul>
-        {loading ? (
-          <li>...</li>
-        ) : result?.searchForBreed.length > 0 ? (
-          result?.searchForBreed.map((b) => (
-            <li key={b.id}>
-              <Link to={`/details/${b.id}`}>{b.name}</Link>
-            </li>
-          ))
-        ) : (
-          <li>No results</li>
-        )}
-      </ul>
-    </Prompt>
+    <ul>
+      {loading ? (
+        <li>...</li>
+      ) : result?.searchForBreed.length > 0 ? (
+        result?.searchForBreed.map((b) => (
+          <li key={b.id}>
+            <Link to={`/details/${b.id}`}>{b.name}</Link>
+          </li>
+        ))
+      ) : (
+        <li>No results</li>
+      )}
+    </ul>
   );
 };
 

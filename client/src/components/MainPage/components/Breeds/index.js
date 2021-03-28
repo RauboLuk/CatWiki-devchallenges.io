@@ -48,7 +48,7 @@ const Title = styled.p`
 const BigText = styled.p`
   grid-area: bigText;
   font-weight: bold;
-  font-size: 48px;
+  font-size: min(48px, 4vw);
   line-height: 59px;
 `;
 
