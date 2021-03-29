@@ -12,6 +12,10 @@ const Wrapper = styled.div`
     text-align: left;
     padding: 0;
     margin: 0;
+
+    @media (max-width: 768px) {
+      font-size: 14px;
+    }
   }
 `;
 const Title = styled.p`
@@ -25,17 +29,28 @@ const List = styled.div`
   display: flex;
   flex-direction: column;
   gap: 50px;
+
+  @media (max-width: 768px) {
+    gap: 25px;
+  }
 `;
 
 const ListEle = styled.div`
   display: flex;
   flex-direction: row;
   gap: 48px;
+
+  @media (max-width: 768px) {
+    gap: 24px;
+  }
 `;
 
 const Img = styled.img`
   max-width: 170px;
-  max-width: 170px;
+
+  @media (max-width: 768px) {
+    max-width: 130px;
+  }
 `;
 
 const TextWrapper = styled.div``;
@@ -44,6 +59,11 @@ const Breed = styled.p`
   font-size: 36px;
   font-weight: 600;
   line-height: 44px;
+
+  @media (max-width: 768px) {
+    font-size: 30px;
+    word-break: break-all;
+  }
 `;
 
 const Desc = styled.p`
@@ -57,7 +77,7 @@ const MostSearchedBreeds = () => {
       <List>
         <ListEle>
           <div>
-            <Img src="https://via.placeholder.com/380x380" alt="" />
+            <Img src="https://via.placeholder.com/580x380" alt="" />
           </div>
           <TextWrapper>
             <Breed>1. Bengal</Breed>
@@ -71,7 +91,7 @@ const MostSearchedBreeds = () => {
         </ListEle>
         <ListEle>
           <div>
-            <Img src="https://via.placeholder.com/380x380" alt="" />
+            <Img src="https://via.placeholder.com/380x580" alt="" />
           </div>
           <TextWrapper>
             <Breed>2. Chartreux</Breed>
