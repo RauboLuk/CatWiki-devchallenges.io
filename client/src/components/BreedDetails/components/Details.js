@@ -5,6 +5,11 @@ const Wrapper = styled.div`
   grid-template-columns: 45% 55%;
   padding: 0 4vw;
 
+  @media (max-width: 768px) {
+    display: flex;
+    flex-direction: column;
+  }
+
   & * {
     margin: 0;
     color: #291507;
@@ -42,6 +47,10 @@ const Rectangle82 = styled.div`
 const Img = styled.img`
   border-radius: 24px;
   max-width: 100%;
+
+  @media (max-width: 768px) {
+    max-height: 400px;
+  }
 `;
 
 const Title = styled.p`
@@ -59,18 +68,34 @@ const Desc = styled.p`
   line-height: 22px;
   text-align: left;
   margin: 15px 0;
+
+  @media (max-width: 768px) {
+    font-size: 14px;
+  }
 `;
 
 const Info = styled.div`
   width: 85%;
 
+  @media (max-width: 768px) {
+    width: 100%;
+  }
+
   & * {
     padding: 16px 0;
+
+    @media (max-width: 768px) {
+      padding: 10px 0;
+    }
   }
 `;
 
 const Bold = styled.span`
   font-weight: 700;
+
+@media (max-width: 768px) {
+  font-size: 14px;
+}
 `;
 
 const TableRow = styled.div`
@@ -83,6 +108,10 @@ const Bulet = styled.p`
   font-size: 16px;
   line-height: 20px;
   text-align: left;
+
+@media (max-width: 768px) {
+  font-size: 14px;
+}
 `;
 
 const ScoreLine = styled.div`
@@ -93,6 +122,10 @@ const ScoreLine = styled.div`
   border-radius: 8px;
 
   background: ${(props) => (props.true ? "#544439" : "#E0E0E0")};
+
+  @media (max-width: 768px) {
+    width: 10vw;
+  }
 `;
 
 const Details = ({ breed, img }) => {

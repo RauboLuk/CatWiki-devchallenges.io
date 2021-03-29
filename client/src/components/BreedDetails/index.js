@@ -21,7 +21,6 @@ const BreedDetails = () => {
   if (loading || imgLoading) return <p>loading...</p>;
   if (error) return <p>error {error.message}</p>;
 
-  
   console.log(data.getBreedWithImgUrls);
   console.log("imageData", imageData?.getImageUrl);
   if (!data.getBreedWithImgUrls.success) return <p>not found</p>;

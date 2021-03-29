@@ -172,7 +172,7 @@ const Hero = () => {
       setPlaceholder("Search");
     }
   };
-  const debounced = useDebouncedCallback(handleResize, 100);
+  const debounced = useDebouncedCallback(handleResize, 200);
 
   const openModal = () => {
     if (window.innerWidth <= 768) setIsModalOpen(true);
@@ -182,8 +182,9 @@ const Hero = () => {
     setText(e.target.value);
   };
 
-  const handleSearchFocus = (e) => {
-    setTimeout(() => setIsSearchFocused(!isSearchFocused), 50);
+  const handleFocusChange = (isFocused) => {
+    // TODO fix memory leak
+    setTimeout(() => setIsSearchFocused(isFocused), 200);
   };
   return (
     <HeroWrapper>
@@ -198,8 +199,8 @@ const Hero = () => {
             value={text}
             onClick={openModal}
             onChange={handleChange}
-            onFocus={handleSearchFocus}
-            onBlur={handleSearchFocus}
+            onFocus={() => handleFocusChange(true)}
+            onBlur={() => handleFocusChange(false)}
           />
           <SearchSvg />
         </SearchWrapper>

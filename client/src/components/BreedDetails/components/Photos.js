@@ -23,6 +23,11 @@ const ImgsWrapper = styled.div`
   justify-content: stretch;
   align-content: stretch;
   gap: 2vw;
+
+  @media (max-width: 768px) {
+    grid-auto-rows: minmax(auto, 40vw);
+    grid-template-columns: repeat(2, 1fr);
+  }
 `;
 
 const Img = styled.img`
