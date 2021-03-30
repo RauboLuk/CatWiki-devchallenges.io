@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { gql, useQuery } from "@apollo/client";
 
 const Wrapper = styled.div`
   padding-bottom: 15vh;
@@ -71,11 +72,35 @@ const Desc = styled.p`
 `;
 
 const MostSearchedBreeds = () => {
+  const { loading, error, data } = useQuery(GET_DATA);
+
+  if (loading) return <div>loading...</div>;
+  if (error) return <div>Error. Try again later.</div>;
+
+  const renderBreed = (breed, i) => {
+    return (
+      <ListEle key={breed.breedId}>
+        <div>
+          <Img src={breed.breedImg.url} alt="" />
+        </div>
+        <TextWrapper>
+          <Breed>
+            {i+1}. {breed.name}
+          </Breed>
+          <Desc>{breed.breed.description}</Desc>
+        </TextWrapper>
+      </ListEle>
+    );
+  };
   return (
     <Wrapper>
-      <Title>Top 10 most searched breeds</Title>
+      <Title>Top {data?.getMostSearched.length} most searched breeds</Title>
       <List>
-        <ListEle>
+        {data?.getMostSearched.length > 0
+          ? data.getMostSearched.map((breed, i) => renderBreed(breed, i))
+          : null}
+
+        {/* <ListEle>
           <div>
             <Img src="https://via.placeholder.com/580x380" alt="" />
           </div>
@@ -129,10 +154,29 @@ const MostSearchedBreeds = () => {
             <Breed>XD</Breed>
             <Desc>dasd</Desc>
           </TextWrapper>
-        </ListEle>
+        </ListEle> */}
       </List>
     </Wrapper>
   );
 };
 
 export default MostSearchedBreeds;
+
+const GET_DATA = gql`
+  query Query {
+    getMostSearched {
+      name
+      breedId
+      imgId
+      visited
+      breed {
+        id
+        description
+      }
+      breedImg {
+        id
+        url
+      }
+    }
+  }
+`;
