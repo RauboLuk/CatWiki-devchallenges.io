@@ -17,6 +17,7 @@ class CatAPI extends RESTDataSource {
     return {
       id: breed.id,
       name: breed.name,
+      imgId: breed.reference_image_id,
     };
   }
 

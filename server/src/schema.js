@@ -29,6 +29,8 @@ const typeDefs = gql`
     id: ID!
     "Breed's name"
     name: String!
+    "Id to get breed main image"
+    imgId: String!
   }
 
   type ImageUrl {
@@ -46,9 +48,14 @@ const typeDefs = gql`
   }
 
   type CatToplist {
+    "Breed's name to display"
     name: String!
+    "Breed's id"
     breedId: String!
+    "Id to get breed main image"
     imgId: String!
+    "How many times breed info was visited"
+    visited: Int!
   }
 
   type Query {
@@ -59,12 +66,18 @@ const typeDefs = gql`
     "Returns information about breed"
     getBreed(id: String!): Breed!
     "Returns breed information and images urls"
-    getBreedWithImgUrls(id: String! limit: Int): BreedWithImgUrlsResponse!
+    getBreedWithImgUrls(id: String!, limit: Int): BreedWithImgUrlsResponse!
     getMostSearched: [CatToplist!]
   }
 
   type Mutation {
-    updateCat: CatToplist
+    addCat(
+      name: String!
+      breedId: String!
+      imgId: String!
+      visited: Int!
+    ): CatToplist!
+    catVisited(name: String!, breedId: String!, imgId: String!): CatToplist
   }
 `;
 
