@@ -1,33 +1,44 @@
 module.exports = {
   Query: {
     searchForBreed: async (_, { str }, { dataSources }) => {
-      return dataSources.catAPI.searchForBreed(str);
+      return await dataSources.catAPI.searchForBreed(str);
     },
     getImageUrl: async (_, { id }, { dataSources }) => {
-      return dataSources.catAPI.getImageUrl(id);
+      return await dataSources.catAPI.getImageUrl(id);
     },
     getBreed: async (_, { id }, { dataSources }) => {
-      return dataSources.catAPI.getBreed(id);
+      return await dataSources.catAPI.getBreed(id);
     },
     getBreedWithImgUrls: async (_, { id, limit }, { dataSources }) => {
-      return dataSources.catAPI.getBreedWithImgUrls(id, limit);
+      return await dataSources.catAPI.getBreedWithImgUrls(id, limit);
     },
     getMostSearched: async (_, { limit }, { dataSources }) => {
-      return dataSources.topCatsDB.getMostSearched(limit);
+      const topBreeds = await dataSources.topCatsDB.getMostSearched(limit);
+      const breedsInfo = await Promise.all(
+        topBreeds.map(breed => dataSources.catAPI.getBreed(breed.breedId)
+        )
+      )
+      const breedImg = await Promise.all(
+        topBreeds.map(breed => dataSources.catAPI.getImageUrl(breed.imgId))
+      )
+      let response = [];
+      for (let i = 0; i < topBreeds.length; i++) {
+        response.push({
+          id: topBreeds[i].id,
+          name: topBreeds[i].name,
+          breedId: topBreeds[i].breedId,
+          imgId: topBreeds[i].imgId,
+          visited: topBreeds[i].visited,
+          breed: breedsInfo[i],
+          breedImg: breedImg[i],
+        })
+      }
+      return response;
     },
   },
   Mutation: {
-    addCat: async (_, { catId }, { dataSources }) => {
-      const cat = await dataSources.catAPI.getBreed(catId);
-      return dataSources.topCatsDB.addCat({
-        name: cat.name,
-        breedId: cat.id,
-        imgId: cat.reference_image_id,
-      });
-    },
-    catVisited: async (_, catData, { dataSources }) => {
-      const cat = await dataSources.topCatsDB.findOneAndUpdate(catData);
-      console.log(cat);
+    addCatVisit: async (_, catData, { dataSources }) => {
+      return await dataSources.topCatsDB.findCatIncVisit(catData);
     },
   },
 };

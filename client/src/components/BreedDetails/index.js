@@ -1,9 +1,10 @@
 import styled from "styled-components";
 import { useParams } from "react-router-dom";
-import { useQuery, gql } from "@apollo/client";
+import { useQuery, gql, useMutation } from "@apollo/client";
 
 import Details from "./components/Details";
 import Photos from "./components/Photos";
+import { useEffect } from "react";
 
 const Wrapper = styled.div``;
 
@@ -17,6 +18,23 @@ const BreedDetails = () => {
     skip: !imageId,
     variables: { imageId },
   });
+
+  const [addCatVisit, { called: visitCalled }] = useMutation(
+    ADD_CAT_VISIT
+  );
+
+  useEffect(() => {
+    if (!loading && !imgLoading && imageData && data && !visitCalled) {
+      addCatVisit({
+        variables: {
+          addCatVisitName: data.getBreedWithImgUrls.breed.name,
+          addCatVisitBreedId: data.getBreedWithImgUrls.breed.id,
+          addCatVisitImgId: data.getBreedWithImgUrls.breed.reference_image_id,
+        },
+      });
+      console.log('x');
+    }
+  }, [loading, imgLoading, imageData, data, visitCalled, addCatVisit]);
 
   if (loading || imgLoading) return <p>loading...</p>;
   if (error) return <p>error {error.message}</p>;
@@ -71,6 +89,23 @@ const MAIN_IMAGE = gql`
     getImageUrl(id: $imageId) {
       id
       url
+    }
+  }
+`;
+
+const ADD_CAT_VISIT = gql`
+  mutation Mutation(
+    $addCatVisitName: String!
+    $addCatVisitBreedId: String!
+    $addCatVisitImgId: String!
+  ) {
+    addCatVisit(
+      name: $addCatVisitName
+      breedId: $addCatVisitBreedId
+      imgId: $addCatVisitImgId
+    ) {
+      breedId
+      visited
     }
   }
 `;

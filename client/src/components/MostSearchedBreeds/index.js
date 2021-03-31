@@ -72,12 +72,12 @@ const Desc = styled.p`
 `;
 
 const MostSearchedBreeds = () => {
-  const { loading, error, data } = useQuery(GET_DATA);
+  const { loading, error, data } = useQuery(GET_BREEDS);
 
   if (loading) return <div>loading...</div>;
   if (error) return <div>Error. Try again later.</div>;
 
-  const renderBreed = (breed, i) => {
+  const createElementBreed = (breed, i) => {
     return (
       <ListEle key={breed.breedId}>
         <div>
@@ -97,64 +97,8 @@ const MostSearchedBreeds = () => {
       <Title>Top {data?.getMostSearched.length} most searched breeds</Title>
       <List>
         {data?.getMostSearched.length > 0
-          ? data.getMostSearched.map((breed, i) => renderBreed(breed, i))
+          ? data.getMostSearched.map((breed, i) => createElementBreed(breed, i))
           : null}
-
-        {/* <ListEle>
-          <div>
-            <Img src="https://via.placeholder.com/580x380" alt="" />
-          </div>
-          <TextWrapper>
-            <Breed>1. Bengal</Breed>
-            <Desc>
-              Bengals are a lot of fun to live with, but they're definitely not
-              the cat for everyone, or for first-time cat owners. Extremely
-              intelligent, curious and active, they demand a lot of interaction
-              and woe betide the owner who doesn't provide it.{" "}
-            </Desc>
-          </TextWrapper>
-        </ListEle>
-        <ListEle>
-          <div>
-            <Img src="https://via.placeholder.com/380x580" alt="" />
-          </div>
-          <TextWrapper>
-            <Breed>2. Chartreux</Breed>
-            <Desc>
-              The Chartreux is generally silent but communicative. Short play
-              sessions, mixed with naps and meals are their perfect day. Whilst
-              appreciating any attention you give them, they are not demanding,
-              content instead to follow you around devotedly, sleep on your bed
-              and snuggle with you if you’re not feeling well.The Chartreux is
-              generally silent but communicative. Short play sessions, mixed
-              with naps and meals are their perfect day. Whilst appreciating any
-              attention you give them, they are not demanding, content instead
-              to follow you around devotedly, sleep on your bed and snuggle with
-              you if you’re not feeling well.
-            </Desc>
-          </TextWrapper>
-        </ListEle>
-        <ListEle>
-          <Img src="https://via.placeholder.com/380x380" alt="" />
-          <TextWrapper>
-            <Breed>XD</Breed>
-            <Desc>dasd</Desc>
-          </TextWrapper>
-        </ListEle>
-        <ListEle>
-          <Img src="https://via.placeholder.com/380x380" alt="" />
-          <TextWrapper>
-            <Breed>XD</Breed>
-            <Desc>dasd</Desc>
-          </TextWrapper>
-        </ListEle>
-        <ListEle>
-          <Img src="https://via.placeholder.com/380x380" alt="" />
-          <TextWrapper>
-            <Breed>XD</Breed>
-            <Desc>dasd</Desc>
-          </TextWrapper>
-        </ListEle> */}
       </List>
     </Wrapper>
   );
@@ -162,7 +106,7 @@ const MostSearchedBreeds = () => {
 
 export default MostSearchedBreeds;
 
-const GET_DATA = gql`
+const GET_BREEDS = gql`
   query Query {
     getMostSearched {
       name
