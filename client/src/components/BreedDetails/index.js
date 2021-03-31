@@ -32,7 +32,6 @@ const BreedDetails = () => {
           addCatVisitImgId: data.getBreedWithImgUrls.breed.reference_image_id,
         },
       });
-      console.log('x');
     }
   }, [loading, imgLoading, imageData, data, visitCalled, addCatVisit]);
 

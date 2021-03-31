@@ -82,7 +82,7 @@ const typeDefs = gql`
     getBreed(id: String!): Breed!
     "Returns breed information and images urls"
     getBreedWithImgUrls(id: String!, limit: Int): BreedWithImgUrlsResponse!
-    getMostSearched(limit: String): [CatToplistWithBreed!]
+    getMostSearched(limit: Int): [CatToplistWithBreed!]
   }
 
   type Mutation {

@@ -1,4 +1,6 @@
 import styled from "styled-components";
+import { gql, useQuery } from "@apollo/client";
+import { useHistory } from "react-router-dom";
 import { ReactComponent as ArrowSvg } from "../../../../assets/arrow_right_alt-black-24dp.svg";
 
 const Wrapper = styled.div`
@@ -151,34 +153,78 @@ const Breeds = () => {
           SEE MORE <Arrow />
         </More>
       </MoreWrapper>
-      <ImagesSection>
-        <Item>
-          <ImgWrapper>
-            <Img src="https://via.placeholder.com/220" />
-          </ImgWrapper>
-          <Desc>Bengal</Desc>
-        </Item>
-        <Item>
-          <ImgWrapper>
-            <Img src="https://via.placeholder.com/220x400" />
-          </ImgWrapper>
-          <Desc>Norwegian Forest Cat</Desc>
-        </Item>
-        <Item>
-          <ImgWrapper>
-            <Img src="https://via.placeholder.com/50" />
-          </ImgWrapper>
-          <Desc>Bengal</Desc>
-        </Item>
-        <Item>
-          <ImgWrapper>
-            <Img src="https://via.placeholder.com/270x100" />
-          </ImgWrapper>
-          <Desc>BenNorwegianNorwegianNorwegiangal</Desc>
-        </Item>
-      </ImagesSection>
+      {BreedList()}
     </Wrapper>
   );
 };
 
 export default Breeds;
+
+const BreedList = () => {
+  let history = useHistory();
+  const { loading, error, data } = useQuery(GET_MOST_SEARCHED, {
+    variables: { getMostSearchedLimit: 4 },
+  });
+
+  if (loading) return <p>loading...</p>;
+  if (error) {
+    console.log(error);
+    return <p>error...</p>;
+  }
+  return (
+    <ImagesSection>
+      {data.getMostSearched.map((breed) => {
+        console.log(breed);
+        return (
+          <Item
+            key={breed.breedId}
+            onClick={() => history.push(`details/${breed.breedId}`)}
+          >
+            <ImgWrapper>
+              <Img src={breed.breedImg.url} />
+            </ImgWrapper>
+            <Desc>{breed.name}</Desc>
+          </Item>
+        );
+      })}
+      {/* <Item>
+        <ImgWrapper>
+          <Img src="https://via.placeholder.com/220" />
+        </ImgWrapper>
+        <Desc>Bengal</Desc>
+      </Item>
+      <Item>
+        <ImgWrapper>
+          <Img src="https://via.placeholder.com/220x400" />
+        </ImgWrapper>
+        <Desc>Norwegian Forest Cat</Desc>
+      </Item>
+      <Item>
+        <ImgWrapper>
+          <Img src="https://via.placeholder.com/50" />
+        </ImgWrapper>
+        <Desc>Bengal</Desc>
+      </Item>
+      <Item>
+        <ImgWrapper>
+          <Img src="https://via.placeholder.com/270x100" />
+        </ImgWrapper>
+        <Desc>BenNorwegianNorwegianNorwegiangal</Desc>
+      </Item> */}
+    </ImagesSection>
+  );
+};
+
+const GET_MOST_SEARCHED = gql`
+  query Query($getMostSearchedLimit: Int) {
+    getMostSearched(limit: $getMostSearchedLimit) {
+      name
+      breedImg {
+        url
+        id
+      }
+      visited
+      breedId
+    }
+  }
+`;
