@@ -11,7 +11,6 @@ const typeDefs = gql`
     temperament: String!
     "Breed's origin country"
     origin: String!
-    "Life span"
     life_span: String!
     adaptability: Int!
     affection_level: Int!
@@ -82,10 +81,12 @@ const typeDefs = gql`
     getBreed(id: String!): Breed!
     "Returns breed information and images urls"
     getBreedWithImgUrls(id: String!, limit: Int): BreedWithImgUrlsResponse!
+    "Returns most visited cat breeds"
     getMostSearched(limit: Int): [CatToplistWithBreed!]
   }
 
   type Mutation {
+    "Increments breed visits or creates a new entry"
     addCatVisit(name: String!, breedId: String!, imgId: String!): CatToplist!
   }
 `;

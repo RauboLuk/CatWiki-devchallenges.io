@@ -1,3 +1,5 @@
+const { mostSearchedReducer } = require("./utils");
+
 module.exports = {
   Query: {
     searchForBreed: async (_, { str }, { dataSources }) => {
@@ -15,25 +17,12 @@ module.exports = {
     getMostSearched: async (_, { limit }, { dataSources }) => {
       const topBreeds = await dataSources.topCatsDB.getMostSearched(limit);
       const breedsInfo = await Promise.all(
-        topBreeds.map(breed => dataSources.catAPI.getBreed(breed.breedId)
-        )
-      )
+        topBreeds.map((breed) => dataSources.catAPI.getBreed(breed.breedId))
+      );
       const breedImg = await Promise.all(
-        topBreeds.map(breed => dataSources.catAPI.getImageUrl(breed.imgId))
-      )
-      let response = [];
-      for (let i = 0; i < topBreeds.length; i++) {
-        response.push({
-          id: topBreeds[i].id,
-          name: topBreeds[i].name,
-          breedId: topBreeds[i].breedId,
-          imgId: topBreeds[i].imgId,
-          visited: topBreeds[i].visited,
-          breed: breedsInfo[i],
-          breedImg: breedImg[i],
-        })
-      }
-      return response;
+        topBreeds.map((breed) => dataSources.catAPI.getImageUrl(breed.imgId))
+      );
+      return mostSearchedReducer(topBreeds, breedsInfo, breedImg);
     },
   },
   Mutation: {

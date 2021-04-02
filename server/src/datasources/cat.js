@@ -23,7 +23,7 @@ class CatAPI extends RESTDataSource {
 
   async getImageUrl(id) {
     const response = await this.get(`images/${id}`);
-    return response?.url ? { url: response.url, id: response.id } : {};
+    return response.url ? { url: response.url, id: response.id } : {};
   }
 
   async getBreed(id) {

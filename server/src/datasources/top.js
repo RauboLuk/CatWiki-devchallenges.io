@@ -3,11 +3,7 @@ const Cat = require("../models/cat");
 
 class TopCatsDB extends DataSource {
   async getMostSearched(limit = 10) {
-    try {
-      return await Cat.find().sort({ visited: -1 }).limit(limit);
-    } catch (error) {
-      console.log(error);
-    }
+    return await Cat.find().sort({ visited: -1 }).limit(limit);
   }
   async findCatIncVisit(cat) {
     return await Cat.findOneAndUpdate(
