@@ -93,15 +93,19 @@ const Info = styled.div`
 const Bold = styled.span`
   font-weight: 700;
 
-@media (max-width: 768px) {
-  font-size: 14px;
-}
+  @media (max-width: 768px) {
+    font-size: 14px;
+  }
 `;
 
 const TableRow = styled.div`
   display: grid;
   grid-template-columns: 35% repeat(5, 1fr);
   padding: 0;
+  word-break: break-word;
+  @media (max-width: 350px) {
+  grid-template-columns: 50% repeat(5, 1fr);
+  }
 `;
 
 const Bulet = styled.p`
@@ -109,9 +113,9 @@ const Bulet = styled.p`
   line-height: 20px;
   text-align: left;
 
-@media (max-width: 768px) {
-  font-size: 14px;
-}
+  @media (max-width: 768px) {
+    font-size: 14px;
+  }
 `;
 
 const ScoreLine = styled.div`
@@ -125,6 +129,9 @@ const ScoreLine = styled.div`
 
   @media (max-width: 768px) {
     width: 10vw;
+  }
+  @media (max-width: 350px) {
+    width: 8vw;
   }
 `;
 
