@@ -44,6 +44,10 @@ const ListEle = styled.div`
   @media (max-width: 768px) {
     gap: 24px;
   }
+  @media (max-width: 420px) {
+    flex-direction: column;
+    gap: 10px;
+  }
 `;
 
 const Img = styled.img`
@@ -51,6 +55,9 @@ const Img = styled.img`
 
   @media (max-width: 768px) {
     max-width: 130px;
+  }
+  @media (max-width: 420px) {
+    max-width: 150px;
   }
 `;
 
@@ -63,7 +70,7 @@ const Breed = styled.p`
 
   @media (max-width: 768px) {
     font-size: 30px;
-    word-break: break-all;
+    word-break: break-word;
   }
 `;
 
@@ -85,7 +92,7 @@ const MostSearchedBreeds = () => {
         </div>
         <TextWrapper>
           <Breed>
-            {i+1}. {breed.name}
+            {i + 1}. {breed.name}
           </Breed>
           <Desc>{breed.breed.description}</Desc>
         </TextWrapper>
