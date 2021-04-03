@@ -36,7 +36,7 @@ const BreedDetails = () => {
   }, [loading, imgLoading, imageData, data, visitCalled, addCatVisit]);
 
   if (loading || imgLoading) return <LoadingBar />;
-  if (error || !data.getBreedWithImgUrls.success) return <ErrorMsg message={`Oooops, unknown error.`} />;
+  if (true || error || !data.getBreedWithImgUrls.success) return <ErrorMsg message={`Ooops, unknown error.`} />;
 
   console.log(data.getBreedWithImgUrls);
   console.log("imageData", imageData?.getImageUrl);

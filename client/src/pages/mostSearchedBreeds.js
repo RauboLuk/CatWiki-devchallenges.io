@@ -85,7 +85,7 @@ const MostSearchedBreeds = () => {
   const { loading, error, data } = useQuery(GET_BREEDS);
 
   if (loading) return <LoadingBar />;
-  if (error) return <ErrorMsg message={"Oooops, unknown error"} />
+  if (error) return <ErrorMsg message={"Ooops, unknown error."} />
 
   const createElementBreed = (breed, i) => {
     return (
