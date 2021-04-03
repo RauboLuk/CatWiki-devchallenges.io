@@ -1,8 +1,8 @@
 import styled from "styled-components";
 import Modal from "@material-ui/core/Modal";
 import CloseIcon from "@material-ui/icons/Close";
-import { ReactComponent as SearchSvg1 } from "../../../../assets/search-black-18dp.svg";
-import { SearchResult } from "./index";
+import { ReactComponent as SearchSvg1 } from "../../assets/search-black-18dp.svg";
+import { SearchResult } from "./Hero";
 
 const ModalContent = styled.div`
   padding: 15px 18px;

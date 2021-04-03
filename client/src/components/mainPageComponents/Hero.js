@@ -5,10 +5,10 @@ import { useDebounce, useDebouncedCallback } from "use-debounce";
 import { gql, useLazyQuery } from "@apollo/client";
 
 import { Scrollbars } from "react-custom-scrollbars";
-import { ReactComponent as SearchSvg } from "../../../../assets/search-black-18dp.svg";
-import { ReactComponent as LogoSvg } from "../../../../assets/CatwikiLogo.svg";
+import { ReactComponent as SearchSvg } from "../../assets/search-black-18dp.svg";
+import { ReactComponent as LogoSvg } from "../../assets/CatwikiLogo.svg";
 
-import hero from "../../../../assets/HeroImagelg.png";
+import hero from "../../assets/HeroImagelg.png";
 import Modal from "./Modal";
 
 const HeroWrapper = styled.div`

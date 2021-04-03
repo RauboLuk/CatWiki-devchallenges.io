@@ -1,11 +1,11 @@
 import { useHistory, Switch, Route } from "react-router-dom";
 import styled from "styled-components";
-import { ReactComponent as LogoSvg } from "../../assets/CatwikiLogo.svg";
+import { ReactComponent as LogoSvg } from "../assets/CatwikiLogo.svg";
 
-import MainPage from "../MainPage";
-import BreedDetails from "../BreedDetails";
-import MostSearchedBreeds from "../MostSearchedBreeds";
-import Footer from "../Footer";
+import MainPage from "./mainPage";
+import BreedDetails from "./breedDetails";
+import MostSearchedBreeds from "./mostSearchedBreeds";
+import Footer from "../components/Footer";
 
 const Wrapper = styled.div`
   padding: 26px 96px;
@@ -27,7 +27,7 @@ const Logo = styled(LogoSvg)`
   }
 `;
 
-function App() {
+function Pages() {
   let history = useHistory();
   const handleClick = () => {
     history.push("/");
@@ -51,4 +51,4 @@ function App() {
   );
 }
 
-export default App;
+export default Pages;

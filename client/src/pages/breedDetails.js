@@ -2,8 +2,8 @@ import styled from "styled-components";
 import { useParams } from "react-router-dom";
 import { useQuery, gql, useMutation } from "@apollo/client";
 
-import Details from "./components/Details";
-import Photos from "./components/Photos";
+import Details from "../components/breedDetailsComponents/Details";
+import Photos from "../components/breedDetailsComponents/Photos";
 import { useEffect } from "react";
 
 const Wrapper = styled.div``;

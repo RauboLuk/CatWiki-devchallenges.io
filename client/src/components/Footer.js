@@ -1,6 +1,6 @@
 import styled from "styled-components";
-import { ReactComponent as LogoSvg } from "../../assets/CatwikiLogo.svg";
-import { ReactComponent as CSvg } from "../../assets/copyright-24px.svg";
+import { ReactComponent as LogoSvg } from "../assets/CatwikiLogo.svg";
+import { ReactComponent as CSvg } from "../assets/copyright-24px.svg";
 
 const Wrapper = styled.div`
   width: calc(100% - 80px * 2);

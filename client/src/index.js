@@ -3,7 +3,7 @@ import ReactDOM from "react-dom";
 import { BrowserRouter as Router } from "react-router-dom";
 import { ApolloClient, ApolloProvider, InMemoryCache } from "@apollo/client";
 
-import App from "./components/App";
+import Pages from "./pages";
 import reportWebVitals from "./reportWebVitals";
 
 const client = new ApolloClient({
@@ -15,7 +15,7 @@ ReactDOM.render(
   <React.StrictMode>
     <Router>
       <ApolloProvider client={client}>
-        <App />
+        <Pages />
       </ApolloProvider>
     </Router>
   </React.StrictMode>,
