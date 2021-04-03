@@ -27,6 +27,7 @@ const Logo = styled(LogoSvg)`
 
   @media (max-width: 768px) {
     width: 15vw;
+    min-width: 68px;
   }
 `;
 
@@ -39,6 +40,7 @@ const Credits = styled.p`
   letter-spacing: 0em;
   text-align: left;
   color: #ffffff;
+  word-break: break-word;
 
   @media (max-width: 768px) {
     font-size: max(12px, 2vw);
@@ -58,9 +60,9 @@ const CreditsWrapper = styled.div`
   align-items: center;
   gap: 15px;
 
-@media (max-width: 768px) {
-  gap: 8px;
-}
+  @media (max-width: 768px) {
+    gap: 8px;
+  }
 `;
 const Copyright = styled(CSvg)`
   fill: white;
