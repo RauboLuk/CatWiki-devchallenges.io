@@ -168,10 +168,8 @@ const BreedList = () => {
   });
 
   if (loading) return <LoadingBar />;
-  if (error) {
-    console.log(error);
-    return <p>error...</p>;
-  }
+  if (error) return null;
+
   return (
     <ImagesSection>
       {data.getMostSearched.map((breed) => {

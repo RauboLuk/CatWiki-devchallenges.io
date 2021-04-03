@@ -2,6 +2,7 @@ import styled from "styled-components";
 import { gql, useQuery } from "@apollo/client";
 
 import LoadingBar from "../components/LoadingBar";
+import ErrorMsg from "../components/ErrorMsg";
 
 const Wrapper = styled.div`
   padding-bottom: 15vh;
@@ -84,7 +85,7 @@ const MostSearchedBreeds = () => {
   const { loading, error, data } = useQuery(GET_BREEDS);
 
   if (loading) return <LoadingBar />;
-  if (error) return <div>Error. Try again later.</div>;
+  if (error) return <ErrorMsg message={"Oooops, unknown error"} />
 
   const createElementBreed = (breed, i) => {
     return (
@@ -103,9 +104,9 @@ const MostSearchedBreeds = () => {
   };
   return (
     <Wrapper>
-      <Title>Top {data?.getMostSearched.length} most searched breeds</Title>
+      <Title>Top {data.getMostSearched?.length} most searched breeds</Title>
       <List>
-        {data?.getMostSearched.length > 0
+        {data.getMostSearched?.length > 0
           ? data.getMostSearched.map((breed, i) => createElementBreed(breed, i))
           : null}
       </List>

@@ -1,11 +1,12 @@
 import styled from "styled-components";
+import { useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { useQuery, gql, useMutation } from "@apollo/client";
 
 import Details from "../components/breedDetailsComponents/Details";
 import Photos from "../components/breedDetailsComponents/Photos";
-import { useEffect } from "react";
 import LoadingBar from "../components/LoadingBar";
+import ErrorMsg from "../components/ErrorMsg";
 
 const Wrapper = styled.div``;
 
@@ -20,9 +21,7 @@ const BreedDetails = () => {
     variables: { imageId },
   });
 
-  const [addCatVisit, { called: visitCalled }] = useMutation(
-    ADD_CAT_VISIT
-  );
+  const [addCatVisit, { called: visitCalled }] = useMutation(ADD_CAT_VISIT);
 
   useEffect(() => {
     if (!loading && !imgLoading && imageData && data && !visitCalled) {
@@ -37,11 +36,10 @@ const BreedDetails = () => {
   }, [loading, imgLoading, imageData, data, visitCalled, addCatVisit]);
 
   if (loading || imgLoading) return <LoadingBar />;
-  if (error) return <p>error {error.message}</p>;
+  if (error || !data.getBreedWithImgUrls.success) return <ErrorMsg message={`Oooops, unknown error.`} />;
 
   console.log(data.getBreedWithImgUrls);
   console.log("imageData", imageData?.getImageUrl);
-  if (!data.getBreedWithImgUrls.success) return <p>not found</p>;
   return (
     <Wrapper>
       <Details
