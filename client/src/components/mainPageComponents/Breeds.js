@@ -2,6 +2,7 @@ import styled from "styled-components";
 import { gql, useQuery } from "@apollo/client";
 import { useHistory } from "react-router-dom";
 import { ReactComponent as ArrowSvg } from "../../assets/arrow_right_alt-black-24dp.svg";
+import LoadingBar from "../LoadingBar";
 
 const Wrapper = styled.div`
   margin-top: -40px;
@@ -166,7 +167,7 @@ const BreedList = () => {
     variables: { getMostSearchedLimit: 4 },
   });
 
-  if (loading) return <p>loading...</p>;
+  if (loading) return <LoadingBar />;
   if (error) {
     console.log(error);
     return <p>error...</p>;

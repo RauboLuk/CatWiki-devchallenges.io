@@ -1,6 +1,8 @@
 import styled from "styled-components";
 import { gql, useQuery } from "@apollo/client";
 
+import LoadingBar from "../components/LoadingBar";
+
 const Wrapper = styled.div`
   padding-bottom: 15vh;
   & * {
@@ -81,7 +83,7 @@ const Desc = styled.p`
 const MostSearchedBreeds = () => {
   const { loading, error, data } = useQuery(GET_BREEDS);
 
-  if (loading) return <div>loading...</div>;
+  if (loading) return <LoadingBar />;
   if (error) return <div>Error. Try again later.</div>;
 
   const createElementBreed = (breed, i) => {

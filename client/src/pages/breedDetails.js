@@ -5,6 +5,7 @@ import { useQuery, gql, useMutation } from "@apollo/client";
 import Details from "../components/breedDetailsComponents/Details";
 import Photos from "../components/breedDetailsComponents/Photos";
 import { useEffect } from "react";
+import LoadingBar from "../components/LoadingBar";
 
 const Wrapper = styled.div``;
 
@@ -35,7 +36,7 @@ const BreedDetails = () => {
     }
   }, [loading, imgLoading, imageData, data, visitCalled, addCatVisit]);
 
-  if (loading || imgLoading) return <p>loading...</p>;
+  if (loading || imgLoading) return <LoadingBar />;
   if (error) return <p>error {error.message}</p>;
 
   console.log(data.getBreedWithImgUrls);
