@@ -22,6 +22,11 @@ const Logo = styled(LogoSvg)`
     contrast(101%);
   margin-bottom: 30px;
 
+  &:hover,
+  *:hover {
+    cursor: pointer;
+  }
+
   @media (max-width: 768px) {
     flex-direction: column;
   }

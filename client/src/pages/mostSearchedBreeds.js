@@ -3,6 +3,7 @@ import { gql, useQuery } from "@apollo/client";
 
 import LoadingBar from "../components/LoadingBar";
 import ErrorMsg from "../components/ErrorMsg";
+import { useHistory } from "react-router";
 
 const Wrapper = styled.div`
   padding-bottom: 15vh;
@@ -56,6 +57,10 @@ const ListEle = styled.div`
 const Img = styled.img`
   max-width: 170px;
 
+  &:hover {
+    cursor: pointer;
+  }
+
   @media (max-width: 768px) {
     max-width: 130px;
   }
@@ -82,14 +87,20 @@ const Desc = styled.p`
 `;
 
 const MostSearchedBreeds = () => {
+  let history = useHistory();
   const { loading, error, data } = useQuery(GET_BREEDS);
 
   if (loading) return <LoadingBar />;
-  if (error) return <ErrorMsg message={"Ooops, unknown error."} />
+  if (error) return <ErrorMsg message={"Ooops, unknown error."} />;
 
   const createElementBreed = (breed, i) => {
     return (
-      <ListEle key={breed.breedId}>
+      <ListEle
+        key={breed.breedId}
+        onClick={() => {
+          history.push(`/details/${breed.breedId}`);
+        }}
+      >
         <div>
           <Img src={breed.breedImg.url} alt="" />
         </div>

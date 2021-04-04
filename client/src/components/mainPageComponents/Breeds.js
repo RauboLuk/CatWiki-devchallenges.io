@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import { gql, useQuery } from "@apollo/client";
-import { useHistory } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import { ReactComponent as ArrowSvg } from "../../assets/arrow_right_alt-black-24dp.svg";
 import LoadingBar from "../LoadingBar";
 
@@ -83,7 +83,8 @@ const MoreWrapper = styled.div`
   }
 `;
 
-const More = styled.div`
+const More = styled(Link)`
+  text-decoration: none;
   font-weight: bold;
   color: rgba(41, 21, 7, 0.6);
   display: flex;
@@ -129,6 +130,10 @@ const ImgWrapper = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+
+  &:hover {
+    cursor: pointer;
+  }
 `;
 
 const Img = styled.img`
@@ -150,7 +155,7 @@ const Breeds = () => {
       <Title>Most Searched Breeds</Title>
       <BigText>66+ Breeds For you to discover</BigText>
       <MoreWrapper>
-        <More>
+        <More to={"/top"}>
           SEE MORE <Arrow />
         </More>
       </MoreWrapper>
@@ -175,11 +180,10 @@ const BreedList = () => {
       {data.getMostSearched.map((breed) => {
         console.log(breed);
         return (
-          <Item
-            key={breed.breedId}
-            onClick={() => history.push(`details/${breed.breedId}`)}
-          >
-            <ImgWrapper>
+          <Item key={breed.breedId}>
+            <ImgWrapper
+              onClick={() => history.push(`details/${breed.breedId}`)}
+            >
               <Img src={breed.breedImg.url} />
             </ImgWrapper>
             <Desc>{breed.name}</Desc>

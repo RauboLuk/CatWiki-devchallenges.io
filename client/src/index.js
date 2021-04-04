@@ -2,6 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom";
 import { BrowserRouter as Router } from "react-router-dom";
 import { ApolloClient, ApolloProvider, InMemoryCache } from "@apollo/client";
+import { createGlobalStyle } from "styled-components";
 
 import Pages from "./pages";
 import reportWebVitals from "./reportWebVitals";
@@ -11,9 +12,16 @@ const client = new ApolloClient({
   cache: new InMemoryCache(),
 });
 
+const GlobalStyle = createGlobalStyle`
+  p:hover, span:hover {
+    cursor: default;
+  }
+`;
+
 ReactDOM.render(
   <React.StrictMode>
     <Router>
+      <GlobalStyle />
       <ApolloProvider client={client}>
         <Pages />
       </ApolloProvider>
