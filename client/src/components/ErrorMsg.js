@@ -29,7 +29,6 @@ const Link = styled(LinkR)`
 `;
 
 const Error = ({ message = "Error" }) => {
-  console.log(message);
   return (
     <Wrapper>
       <Text>{message}</Text>

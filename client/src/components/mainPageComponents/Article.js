@@ -140,7 +140,6 @@ const Img = styled.img`
 `;
 
 const Article = ({ hideLink }) => {
-  console.log(hideLink);
   return (
     <Wrapper hideLink>
       <TextSection>

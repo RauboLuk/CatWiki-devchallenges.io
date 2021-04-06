@@ -87,38 +87,19 @@ const Desc = styled.p`
 `;
 
 const MostSearchedBreeds = () => {
-  let history = useHistory();
   const { loading, error, data } = useQuery(GET_BREEDS);
 
   if (loading) return <LoadingBar />;
   if (error) return <ErrorMsg message={"Ooops, unknown error."} />;
 
-  const createElementBreed = (breed, i) => {
-    return (
-      <ListEle
-        key={breed.breedId}
-        onClick={() => {
-          history.push(`/details/${breed.breedId}`);
-        }}
-      >
-        <div>
-          <Img src={breed.breedImg.url} alt="" />
-        </div>
-        <TextWrapper>
-          <Breed>
-            {i + 1}. {breed.name}
-          </Breed>
-          <Desc>{breed.breed.description}</Desc>
-        </TextWrapper>
-      </ListEle>
-    );
-  };
   return (
     <Wrapper>
       <Title>Top {data.getMostSearched?.length} most searched breeds</Title>
       <List>
         {data.getMostSearched?.length > 0
-          ? data.getMostSearched.map((breed, i) => createElementBreed(breed, i))
+          ? data.getMostSearched.map((breed, i) => (
+              <BreedInfo i={i} breed={breed} key={breed.breedId} />
+            ))
           : null}
       </List>
     </Wrapper>
@@ -126,6 +107,27 @@ const MostSearchedBreeds = () => {
 };
 
 export default MostSearchedBreeds;
+
+const BreedInfo = ({ i, breed }) => {
+  let history = useHistory();
+  return (
+    <ListEle
+      onClick={() => {
+        history.push(`/details/${breed.breedId}`);
+      }}
+    >
+      <div>
+        <Img src={breed.breedImg.url} alt="" />
+      </div>
+      <TextWrapper>
+        <Breed>
+          {i + 1}. {breed.name}
+        </Breed>
+        <Desc>{breed.breed.description}</Desc>
+      </TextWrapper>
+    </ListEle>
+  );
+};
 
 const GET_BREEDS = gql`
   query Query {

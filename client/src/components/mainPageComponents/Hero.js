@@ -161,10 +161,6 @@ const Hero = () => {
   useEffect(() => {
     handleResize();
     window.addEventListener("resize", debounced);
-
-    // return () => {
-    //   clearTimeout(x)
-    // }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 

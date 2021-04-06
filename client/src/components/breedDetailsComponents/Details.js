@@ -104,7 +104,7 @@ const TableRow = styled.div`
   padding: 0;
   word-break: break-word;
   @media (max-width: 350px) {
-  grid-template-columns: 50% repeat(5, 1fr);
+    grid-template-columns: 50% repeat(5, 1fr);
   }
 `;
 

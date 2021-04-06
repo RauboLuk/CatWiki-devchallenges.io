@@ -177,43 +177,14 @@ const BreedList = () => {
 
   return (
     <ImagesSection>
-      {data.getMostSearched.map((breed) => {
-        console.log(breed);
-        return (
-          <Item key={breed.breedId}>
-            <ImgWrapper
-              onClick={() => history.push(`details/${breed.breedId}`)}
-            >
-              <Img src={breed.breedImg.url} />
-            </ImgWrapper>
-            <Desc>{breed.name}</Desc>
-          </Item>
-        );
-      })}
-      {/* <Item>
-        <ImgWrapper>
-          <Img src="https://via.placeholder.com/220" />
-        </ImgWrapper>
-        <Desc>Bengal</Desc>
-      </Item>
-      <Item>
-        <ImgWrapper>
-          <Img src="https://via.placeholder.com/220x400" />
-        </ImgWrapper>
-        <Desc>Norwegian Forest Cat</Desc>
-      </Item>
-      <Item>
-        <ImgWrapper>
-          <Img src="https://via.placeholder.com/50" />
-        </ImgWrapper>
-        <Desc>Bengal</Desc>
-      </Item>
-      <Item>
-        <ImgWrapper>
-          <Img src="https://via.placeholder.com/270x100" />
-        </ImgWrapper>
-        <Desc>BenNorwegianNorwegianNorwegiangal</Desc>
-      </Item> */}
+      {data.getMostSearched.map((breed) => (
+        <Item key={breed.breedId}>
+          <ImgWrapper onClick={() => history.push(`details/${breed.breedId}`)}>
+            <Img src={breed.breedImg.url} />
+          </ImgWrapper>
+          <Desc>{breed.name}</Desc>
+        </Item>
+      ))}
     </ImagesSection>
   );
 };
