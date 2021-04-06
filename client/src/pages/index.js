@@ -6,6 +6,7 @@ import MainPage from "./mainPage";
 import BreedDetails from "./breedDetails";
 import MostSearchedBreeds from "./mostSearchedBreeds";
 import Footer from "../components/Footer";
+import Article from "../components/mainPageComponents/Article";
 
 const Wrapper = styled.div`
   padding: 26px 96px;
@@ -46,6 +47,9 @@ function Pages() {
         </Route>
         <Route path="/top">
           <MostSearchedBreeds />
+        </Route>
+        <Route path="/more">
+          <Article hideLink />
         </Route>
         <Route path="/">
           <MainPage />

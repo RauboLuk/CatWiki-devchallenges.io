@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { Link } from "react-router-dom";
 import { ReactComponent as ArrowSvg } from "../../assets/arrow_right_alt-black-24dp.svg";
 import image_1 from "../../assets/image_1.png";
 import image_2 from "../../assets/image_2.png";
@@ -10,6 +11,8 @@ const Wrapper = styled.div`
   grid-template-columns: 1fr 1fr;
   grid-template-rows: auto;
   gap: 46px;
+
+  padding-bottom: ${(props) => (props.hideLink ? "24vh" : null)};
 
   @media (max-width: 768px) {
     flex-direction: column;
@@ -74,12 +77,13 @@ const Snippet = styled.p`
   }
 `;
 
-const More = styled.div`
+const More = styled(Link)`
+  text-decoration: none;
   font-weight: bold;
   display: flex;
   align-items: center;
   justify-content: start;
-
+  width: max-content;
   color: rgba(41, 21, 7, 0.6);
 
   @media (max-width: 768px) {
@@ -135,18 +139,21 @@ const Img = styled.img`
   border-radius: 24px;
 `;
 
-const Article = () => {
+const Article = ({ hideLink }) => {
+  console.log(hideLink);
   return (
-    <Wrapper>
+    <Wrapper hideLink>
       <TextSection>
         <BigText>Why should you have a cat?</BigText>
         <Snippet>
           Having a cat around you can actually trigger the release of calming
           chemicals in your body which lower your stress and anxiety leves
         </Snippet>
-        <More>
-          READ MORE <Arrow />
-        </More>
+        {hideLink ? null : (
+          <More to={"/more"}>
+            READ MORE <Arrow />
+          </More>
+        )}
       </TextSection>
       <ImgSection>
         <ImgWrapper>

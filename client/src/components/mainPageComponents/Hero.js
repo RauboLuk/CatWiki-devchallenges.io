@@ -161,6 +161,10 @@ const Hero = () => {
   useEffect(() => {
     handleResize();
     window.addEventListener("resize", debounced);
+
+    // return () => {
+    //   clearTimeout(x)
+    // }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -182,9 +186,10 @@ const Hero = () => {
     setText(e.target.value);
   };
 
-  const handleFocusChange = (isFocused) => {
-    // TODO fix memory leak
-    setTimeout(() => setIsSearchFocused(isFocused), 200);
+  const handleFocusChange = (isFocused, e) => {
+    // to fix warning when link is pressed
+    if (e?.relatedTarget) return null;
+    setIsSearchFocused(isFocused);
   };
   return (
     <HeroWrapper>
@@ -200,11 +205,13 @@ const Hero = () => {
             onClick={openModal}
             onChange={handleChange}
             onFocus={() => handleFocusChange(true)}
-            onBlur={() => handleFocusChange(false)}
+            onBlur={(e) => handleFocusChange(false, e)}
           />
           <SearchSvg />
         </SearchWrapper>
-        <Prompt hidden={!isSearchFocused || !called || window.innerWidth <= 768}>
+        <Prompt
+          hidden={!isSearchFocused || !called || window.innerWidth <= 768}
+        >
           <SearchResult result={data} loading={loading} />
         </Prompt>
       </HeroContent>
