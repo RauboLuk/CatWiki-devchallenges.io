@@ -141,7 +141,7 @@ const Img = styled.img`
 
 const Article = ({ hideLink }) => {
   return (
-    <Wrapper hideLink>
+    <Wrapper hideLink={hideLink}>
       <TextSection>
         <BigText>Why should you have a cat?</BigText>
         <Snippet>
