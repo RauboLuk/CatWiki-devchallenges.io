@@ -36,6 +36,7 @@
 ## Overview
 
 ![screenshot](assets/catwiki0.gif)
+ETC: ~50h
 
 ### Built With
 
